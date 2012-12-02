@@ -1,3 +1,8 @@
 dev/*
+<<<<<<< HEAD
 static/*
 *.pyc
+=======
+*.pyc
+*~
+>>>>>>> e61115a91d60f423efee856ff90cedf72915531b
