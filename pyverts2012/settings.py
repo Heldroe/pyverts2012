@@ -127,6 +127,7 @@ INSTALLED_APPS = (
     'pyverts2012',
     'allauth',
     'profiles',
+    'team360',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
