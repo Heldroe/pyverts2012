@@ -5,6 +5,7 @@
 {% if user.is_authenticated %}
 authenticated
 {% user_display user %}
+{{ user.get_profile.test }}
 {% else %}
 not authenticated
 {% endif %}
