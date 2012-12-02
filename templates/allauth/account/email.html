@@ -2,6 +2,7 @@
 
 {% load i18n %}
 {% load url from future %}
+{% load bootstrap_toolkit %}
 
 {% block head_title %}{% trans "Account" %}{% endblock %}
 
@@ -50,8 +51,8 @@
     
     <form method="post" action="" class="add_email uniForm">
         {% csrf_token %}
-        {{ add_email_form.as_p}}
-        <button name="action_add" type="submit">{% trans "Add E-mail" %}</button>
+        {{ add_email_form|as_bootstrap}}
+        <button name="action_add" type="submit" class="btn btn-primary">{% trans "Add E-mail" %}</button>
     </form>
     
 {% endblock %}

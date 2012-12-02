@@ -2,6 +2,7 @@
 
 {% load url from future %}
 {% load i18n %}
+{% load bootstrap_toolkit %}
 
 {% block head_title %}OpenID Sign In{% endblock %}
 
@@ -12,8 +13,8 @@
 
 <form id="openid_login_form" class="openid_login" method="post" action="{% url 'openid_login' %}">
 {% csrf_token %}
-{{form.as_p}}
-<button type="submit">Sign In</button>
+{{form|as_bootstrap}}
+<button type="submit" class="btn btn-primary">Sign In</button>
 </form>
 
 {% endblock %}
