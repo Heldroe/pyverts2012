@@ -1,9 +1,11 @@
 {% extends "content.html" %}
+{% load account %}
 {% block content %}
 <h3>Interface team 360</h3>
+<h4>Cette semaine vous devez évaluer :</h4>
 <ul>
-{% for rated in ratedlist %}
-<li>{{ rated.id }}</li>
+{% for weekrater in ratedlist %}
+<li><a href="#">{% user_display weekrater.rated %}</a></li>
 {% endfor %}
 </ul>
 {% endblock %}
