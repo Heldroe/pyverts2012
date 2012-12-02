@@ -1,0 +1,25 @@
+TODO:
+
+base en responsive design
+pages : 
+- login
+- inscription
+- logout
+- toutes les autres pages django-allauth (renvoi mdp, changement mail..?)
+- profil
+
+amis ?
+messages entre membres ?
+avatars ?
+
+switch de design (thèmes bootstrap ?)
+
+activation de l'easter egg ?
+placement de l'easter egg ?
+
+achievements ? (gadget mais si on peut...)
+
+Au moins : chaque membre peut ajouter des "point géolocalisé + données sur le point (images, votes)"
+Si on peut : (risqué car pas forcément le sujet)
+modèle de "site", géolocalisé + possibilité d'upload des images, de vote +/-
+toutes les pages associées...
