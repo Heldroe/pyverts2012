@@ -7,6 +7,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'pyverts2012.views.home', name='home'),
+    url(r'^user/$', include('profiles.urls')),
     # url(r'^pyverts2012/', include('pyverts2012.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

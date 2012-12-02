@@ -1,0 +1,11 @@
+{% extends "content.html" %}
+{% load account %}
+{% block content %}
+<h2>My profile</h2>
+{% if user.is_authenticated %}
+authenticated
+{% user_display user %}
+{% else %}
+not authenticated
+{% endif %}
+{% endblock %}
