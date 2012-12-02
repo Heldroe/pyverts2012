@@ -1,0 +1,9 @@
+{% extends "content.html" %}
+{% block content %}
+<h3>Interface team 360</h3>
+<ul>
+{% for rated in ratedlist %}
+<li>{{ rated.id }}</li>
+{% endfor %}
+</ul>
+{% endblock %}
