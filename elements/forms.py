@@ -9,4 +9,4 @@ class ElementCreateForm(ModelForm):
 class ElementEditForm(ModelForm):
     class Meta:
         model = Element
-        fields = ('description',)
+        fields = ('description','original_avatar')

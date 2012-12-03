@@ -23,7 +23,12 @@ def list (request):
 
 def view (request, element_id):
     element = get_object_or_404(Element, id=element_id)
-    return render(request, 'elements/view.html', {'element': element})
+    try:
+        avatar_url = element.avatar.url
+    except ValueError:
+        avatar_url = "" # default avatar
+    return render(request, 'elements/view.html', {'element': element,
+                                                  'avatar_url': avatar_url})
 
 @login_required
 def edit (request, element_id):
@@ -31,7 +36,7 @@ def edit (request, element_id):
     if element.owner != request.user:
         raise Http403
     if request.method == "POST":
-        form = ElementEditForm(request.POST, instance=element)
+        form = ElementEditForm(request.POST, request.FILES, instance=element)
         if form.is_valid():
             element = form.save(commit=False)
             element.save()

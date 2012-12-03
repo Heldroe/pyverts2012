@@ -6,5 +6,7 @@
 {% if element.owner == user %}
 <a class="btn btn-mini" href="{% url edit_element element.id %}">Edit</a>
 {% endif %}
+<br /><br />
+<img src="{{ avatar_url }}" />
 <p>{{ element.description }}</p>
 {% endblock %}
