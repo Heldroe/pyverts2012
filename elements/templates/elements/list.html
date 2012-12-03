@@ -1,0 +1,11 @@
+{% extends "content.html" %}
+{% load bootstrap_toolkit %}
+{% load i18n %}
+{% block content %}
+<ul>
+{% for element in elements %}
+<li><a href="{% url view_element element.id %}">{{ element.name }}</a>
+- <a class="btn btn-mini" href="{% url edit_element element.id %}">Edit</a></li>
+{% endfor %}
+</ul>
+{% endblock %}

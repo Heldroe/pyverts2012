@@ -1,0 +1,10 @@
+{% extends "content.html" %}
+{% load bootstrap_toolkit %}
+{% load i18n %}
+{% block content %}
+<h2>{{ element.name }}</h2>
+{% if element.owner == user %}
+<a class="btn btn-mini" href="{% url edit_element element.id %}">Edit</a>
+{% endif %}
+<p>{{ element.description }}</p>
+{% endblock %}

@@ -2,11 +2,12 @@
 {% load bootstrap_toolkit %}
 {% load i18n %}
 {% block content %}
-<form action="{% url create_element %}" method="post">
+<h2>{{ element.name }}</h2>
+<form action="{% url edit_element element.id %}" method="post">
     {% csrf_token %}
     {{ form|as_bootstrap }}
     <div class="actions">
-        <button type="submit" class="btn primary">{% trans "Créer" %}</button>
+        <button type="submit" class="btn primary">{% trans "Enregistrer" %}</button>
     </div>
 </form>
 {% endblock %}
