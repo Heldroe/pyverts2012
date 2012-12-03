@@ -127,6 +127,7 @@ INSTALLED_APPS = (
     'pyverts2012',
     'allauth',
     'profiles',
+    'elements',
     'team360',
     'imagekit',
     'allauth.account',
