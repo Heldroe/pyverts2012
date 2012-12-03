@@ -1,10 +1,13 @@
 {% extends "content.html" %}
 {% load account %}
+{% load avatar_tags %}
 {% block content %}
 <h2>My profile</h2>
 {% if user.is_authenticated %}
 authenticated
+{% avatar user 100 %}
 {% user_display user %}
+<a href="{% url avatar_change %}">Change your avatar</a>
 {{ user.get_profile.test }}
 {% else %}
 not authenticated

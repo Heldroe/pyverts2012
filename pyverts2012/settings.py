@@ -131,6 +131,7 @@ INSTALLED_APPS = (
     'elements',
     'team360',
     'imagekit',
+    'avatar',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
