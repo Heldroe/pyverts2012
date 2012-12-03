@@ -9,7 +9,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', 'pyverts2012.views.home', name='home'),
-    url(r'^user/', include('profiles.urls')),
+    #url(r'^user/', include('profiles.urls')),
+    url(r'^profile/', include('profiles.urls')),
     url(r'^360/', include('team360.urls')),
     url(r'^elements/', include('elements.urls')),
     # url(r'^pyverts2012/', include('pyverts2012.foo.urls')),

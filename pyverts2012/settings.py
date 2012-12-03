@@ -190,3 +190,5 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 AUTH_PROFILE_MODULE = 'profiles.UserProfile'
+
+LOGIN_REDIRECT_URL = '/profile/'
