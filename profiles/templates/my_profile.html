@@ -1,14 +1,31 @@
 {% extends "content.html" %}
+{% load i18n %}
 {% load account %}
 {% load avatar_tags %}
 {% block content %}
-<h2>My profile</h2>
 {% if user.is_authenticated %}
-authenticated
-{% avatar user 100 %}
-{% user_display user %}
-<a href="{% url avatar_change %}">Change your avatar</a>
-{{ user.get_profile.test }}
+
+<div class="profile_main hidden-phone">
+	<div class="row-fluid">
+	<div class="span2">
+		<a class="thumbnail" href="{% url avatar_change %}">
+		  {% avatar user 200 %}
+		</a>
+	</div>
+	<div class="span10">
+		<h1>{% user_display user %}</h1>
+		<div class="hidden-tablet">
+			{{ user.get_profile.test }}
+		</div>
+	</div>
+	</div>
+</div>
+<div class="visible-phone">
+	<h1><a href="{% url avatar_change %}"><img class="img-polaroid" src="{% avatar_url user 50 %}"></a> {% user_display user %}</h1>
+</div>
+<div class="visible-phone visible-tablet">
+<div class="roundborder profile_more">{{ user.get_profile.test }}</div>
+</div>
 {% else %}
 not authenticated
 {% endif %}

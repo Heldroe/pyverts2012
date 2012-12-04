@@ -1,0 +1,73 @@
+.roundborder {
+    border: 1px solid #DDDDDD;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+}
+
+.profile_more {
+    margin-top: 20px;
+    padding: 5px;
+}
+
+.profile_main {
+    background-color: white;
+    height: 120px;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+}
+
+.profile_main .thumbnail {
+    background-color: white;
+    margin-top: -10px;
+    margin-left: 20px;
+}
+
+/* Large desktop */
+@media (min-width: 1200px) {
+    .profile_main {
+        height: 130px;
+    }
+
+    .profile_main h1 {
+        font-size: 50px;
+        margin-top: 15px;
+    }
+}
+ 
+/* Default */
+@media (min-width: 980px) and (max-width: 1199px) {
+    .profile_main {
+        height: 100px;
+    }
+}
+
+/* Portrait tablets */
+@media (min-width: 768px) and (max-width: 979px) {
+    .profile_main {
+        height: 65px;
+    }
+
+    .profile_main h1 {
+        font-size: 30px;
+    }
+}
+ 
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+    .profile_main {
+        background: none;
+        border: none;
+        box-shadow: none;
+    }
+
+    .profile_main .thumbnail {
+        margin: 0;
+        width: 100px;
+    }
+}
+ 
+/* Landscape phones and down */
+@media (max-width: 480px) {
+
+}
