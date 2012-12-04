@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
@@ -8,13 +10,26 @@ from django.contrib.auth.models import User
 from profiles.models import UserProfile
 from profiles.forms import ProfileEditForm, ProfileAvatarForm
 
+from actstream import action
+from actstream.models import actor_stream, user_stream
+from actstream.actions import follow, unfollow
+
+from django.utils.translation import ugettext as _
+
 @login_required
 def my_profile (request):
-    return render(request, 'profiles/view.html', {'profile_user': request.user})
+    return view(request, request.user.id)
 
 def view (request, user_id):
     profile_user = get_object_or_404(User, id=user_id)
-    return render(request, 'profiles/view.html', {'profile_user': profile_user})
+    profile_stream = actor_stream(profile_user)
+    return render(request, 'profiles/view.html', {'profile_user': profile_user,
+                                                  'profile_stream': profile_stream})
+
+def follow_profile (request, user_id):
+    profile_user = get_object_or_404(User, id=user_id)
+    follow(request.user, profile_user, send_action=False)
+    return redirect(profile_user.get_profile())
 
 @login_required
 def edit (request):
@@ -31,10 +46,12 @@ def edit (request):
             if base_form.is_valid():
                 profile = base_form.save(commit=False)
                 profile.save()
+                action.send(request.user, verb=_(u"a modifié sa description."))
         elif 'avatar_form' in request.POST:
             avatar_form = ProfileAvatarForm(request.POST, request.FILES, instance=profile)
             if avatar_form.is_valid():
                 profile = avatar_form.save(commit=False)
                 profile.save()
+                action.send(request.user, verb=_(u"a modifié sa photo de profil."))
     return render(request, 'profiles/edit.html', {'base_form': base_form,
                                                   'avatar_form': avatar_form})

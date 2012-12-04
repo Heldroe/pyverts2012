@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import os
 PROJECT_ROOT = os.path.dirname(__file__)
 
@@ -197,3 +199,13 @@ AUTH_PROFILE_MODULE = 'profiles.UserProfile'
 LOGIN_REDIRECT_URL = '/profile/'
 
 THUMBNAIL_DEBUG = True
+
+LOCALE_PATHS = (
+    os.path.join(PROJECT_ROOT, 'locale'),
+)
+
+ugettext = lambda s: s
+
+LANGUAGES = (
+    ('fr', ugettext('Français')),
+)

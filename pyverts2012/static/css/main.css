@@ -23,6 +23,10 @@
     margin-left: 20px;
 }
 
+.follow_button {
+    margin: 10px;
+}
+
 /* Large desktop */
 @media (min-width: 1200px) {
     .profile_main {

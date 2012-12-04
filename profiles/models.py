@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models.signals import post_save
 from sorl.thumbnail import ImageField
+from django.core.urlresolvers import reverse
 
 from django.contrib.auth.models import User
 
@@ -13,7 +14,7 @@ class UserProfile(models.Model):
     test = models.CharField(max_length=20, default="Dragons.")
 
     def get_absolute_url(self):
-    	return reverse('profiles.views.view', args=[str(self.id)])
+    	return reverse('profiles.views.view', args=[str(self.user.id)])
 
 def create_user_profile(sender, instance, created, **kwargs):
     if created:

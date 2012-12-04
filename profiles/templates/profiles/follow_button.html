@@ -1,0 +1,9 @@
+{% load i18n %}
+{% load activity_tags %}
+{% if profile_user != user %}
+	{% if user|is_following:profile_user %}
+	<a class="btn btn-success disabled"><i class="icon-star icon-white"></i> {% trans "Suivi" %}</a>
+	{% else %}
+	<a class="btn btn-success" href="{% url follow_profile profile_user.id %}"><i class="icon-star icon-white"></i> {% trans "Suivre " %}</a>
+	{% endif %}
+{% endif %}

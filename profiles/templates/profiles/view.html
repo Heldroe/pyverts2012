@@ -3,6 +3,7 @@
 {% load account %}
 {% load thumbnail %}
 {% load user_avatar %}
+{% load activity_tags %}
 {% block content %}
 <div class="profile_main hidden-phone">
     <div class="row-fluid">
@@ -18,7 +19,11 @@
         {% endif %}
     </div>
     <div class="span10">
-        <h1>{% user_display profile_user %}</h1>
+        <h1 class="pull-left">{% user_display profile_user %}</h1>
+        <div class="follow_button pull-right">
+            {% include 'profiles/follow_button.html' %}
+        </div>
+        <div class="clearfix"></div>
         <div class="hidden-tablet">
             {{ profile_user.get_profile.test }}
         </div>
@@ -26,14 +31,21 @@
     </div>
 </div>
 <div class="visible-phone">
-    <h1>
+    <h1 class="pull-left">
         {% if profile_user == user %}<a href="{% url my_profile %}">{% endif %}
         {% avatar profile_user 50 %}
         {% if profile_user == user %}</a>{% endif %}
         {% user_display user %}
     </h1>
+    <div class="follow_button pull-right">
+            {% include 'profiles/follow_button.html' %}
+        </div>
 </div>
+<div class="clearfix"></div>
 <div class="visible-phone visible-tablet">
-<div class="roundborder profile_more">{{ user.get_profile.test }}</div>
+<div class="roundborder profile_more">{{ profile_user.get_profile.test }}</div>
 </div>
+{% for action in profile_stream %}
+{% display_action action %}<br>
+{% endfor %}
 {% endblock %}
