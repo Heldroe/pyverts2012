@@ -1,0 +1,25 @@
+{% extends "content.html" %}
+{% load i18n %}
+{% load account %}
+{% load thumbnail %}
+{% load user_avatar %}
+{% load bootstrap_toolkit %}
+{% block content %}
+<h2>{% trans "Édition du profil" %}</h2>
+<h3>{% trans "Image de profil" %}</h3>
+<form action="{% url edit_profile %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ avatar_form|as_bootstrap }}
+    <div class="actions">
+        <input type="submit" class="btn primary" value="{% trans "Enregistrer" %}" name="avatar_form" />
+    </div>
+</form>
+<h3>{% trans "Profil" %}</h3>
+<form action="{% url edit_profile %}" method="post">
+    {% csrf_token %}
+    {{ base_form|as_bootstrap }}
+    <div class="actions">
+        <input type="submit" class="btn primary" value="{% trans "Enregistrer" %}" name="base_form" />
+    </div>
+</form>
+{% endblock %}

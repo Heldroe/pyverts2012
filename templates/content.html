@@ -40,7 +40,8 @@
           <li class="dropdown">
           	<a class="dropdown-toggle" href="#" data-toggle="dropdown">{% avatar user 20 %}{% user_display user %}<strong class="caret"></strong></a>
           	<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-          	  <li><a href="{% url my_profile %}">{% trans "Profil" %}</a></li>
+          	  <li><a href="{% url view_profile user.id %}">{% trans "Profil" %}</a></li>
+              <li><a href="{% url edit_profile %}">{% trans "Éditer mon profil" %}</a></li>
           	  <li class="divider"></li>
           	  <li><a href="{% url account_logout %}">{% trans "Déconnexion" %}</a></li>
           	</ul>
