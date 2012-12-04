@@ -29,6 +29,7 @@ def view (request, user_id):
 def follow_profile (request, user_id):
     profile_user = get_object_or_404(User, id=user_id)
     follow(request.user, profile_user, send_action=False)
+    action.send(request.user, verb=_(u"suit désormais"), target=profile_user)
     return redirect(profile_user.get_profile())
 
 @login_required
@@ -46,12 +47,12 @@ def edit (request):
             if base_form.is_valid():
                 profile = base_form.save(commit=False)
                 profile.save()
-                action.send(request.user, verb=_(u"a modifié sa description."))
+                action.send(request.user, verb=_(u"a modifié sa description"))
         elif 'avatar_form' in request.POST:
             avatar_form = ProfileAvatarForm(request.POST, request.FILES, instance=profile)
             if avatar_form.is_valid():
                 profile = avatar_form.save(commit=False)
                 profile.save()
-                action.send(request.user, verb=_(u"a modifié sa photo de profil."))
+                action.send(request.user, verb=_(u"a modifié sa photo de profil"))
     return render(request, 'profiles/edit.html', {'base_form': base_form,
                                                   'avatar_form': avatar_form})
