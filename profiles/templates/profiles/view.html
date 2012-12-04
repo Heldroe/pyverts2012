@@ -1,0 +1,39 @@
+{% extends "content.html" %}
+{% load i18n %}
+{% load account %}
+{% load thumbnail %}
+{% load user_avatar %}
+{% block content %}
+<div class="profile_main hidden-phone">
+    <div class="row-fluid">
+    <div class="span2">
+        {% if profile_user == user %}
+        <a class="thumbnail" href="{% url my_profile %}">
+          {% avatar profile_user 200 %}
+        </a>
+        {% else %}
+        <div class="thumbnail">
+          {% avatar profile_user 200 %}
+        </div>
+        {% endif %}
+    </div>
+    <div class="span10">
+        <h1>{% user_display profile_user %}</h1>
+        <div class="hidden-tablet">
+            {{ profile_user.get_profile.test }}
+        </div>
+    </div>
+    </div>
+</div>
+<div class="visible-phone">
+    <h1>
+        {% if profile_user == user %}<a href="{% url my_profile %}">{% endif %}
+        {% avatar profile_user 50 %}
+        {% if profile_user == user %}</a>{% endif %}
+        {% user_display user %}
+    </h1>
+</div>
+<div class="visible-phone visible-tablet">
+<div class="roundborder profile_more">{{ user.get_profile.test }}</div>
+</div>
+{% endblock %}

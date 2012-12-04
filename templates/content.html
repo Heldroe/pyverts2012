@@ -1,7 +1,7 @@
 {% extends "bootstrap_base.html" %}
 {% load i18n %}
 {% load account %}
-{% load avatar_tags %}
+{% load user_avatar %}
 {% block body %}
 <div class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
@@ -38,7 +38,7 @@
           </li>
           {% else %}
           <li class="dropdown">
-          	<a class="dropdown-toggle" href="#" data-toggle="dropdown">{% avatar user 20 %} {% user_display user %}<strong class="caret"></strong></a>
+          	<a class="dropdown-toggle" href="#" data-toggle="dropdown">{% avatar user 20 %}{% user_display user %}<strong class="caret"></strong></a>
           	<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
           	  <li><a href="{% url my_profile %}">{% trans "Profil" %}</a></li>
           	  <li class="divider"></li>

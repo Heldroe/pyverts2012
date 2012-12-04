@@ -1,0 +1,10 @@
+{% load thumbnail %}
+{% load staticfiles %}
+{% load i18n %}
+{% load account %}
+{% user_display avatar_user as username %}
+{% thumbnail avatar_user.avatar size crop="center" as im %}
+    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{% blocktrans %}Avatar de {{ username }}{% endblocktrans %}">
+{% empty %}
+    <img src="{% static "img/default_user_avatar.png" %}" width="{{ size }}" height="{{ size }}" alt="{% blocktrans %}Avatar de {{ username }}{% endblocktrans %}">
+{% endthumbnail %}
