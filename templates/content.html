@@ -16,10 +16,13 @@
       <a class="brand" href="{% url home %}">.pyVerts</a>
       <div class="nav-collapse collapse">
         <ul class="nav">
-          <li class="active"><a href="{% url home %}">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li{% if home %} class="active"{% endif %}><a href="{% url home %}">Home</a></li>
+          <!--<li><a href="#about">About</a></li>-->
+          <!--<li><a href="#contact">Contact</a></li>-->
         </ul>
+        <form class="navbar-search pull-left" style="margin-left: 100px" method="get" action="{% url search %}">
+          <input type="text" class="search-query" placeholder="{% trans "Rechercher" %}" name="q" id="mainsearch" autocomplete="off">
+        </form>
         <ul class="nav pull-right">
           {% if not user.is_authenticated %}
           <li><a href="{% url account_signup %}">Sign Up</a></li>

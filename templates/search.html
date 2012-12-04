@@ -1,0 +1,22 @@
+{% extends "content.html" %}
+{% load i18n %}
+{% load user_avatar %}
+{% block content %}
+<h1>{% trans "Résultats" %}</h1>
+{% if user_results %}
+<h3>{% trans "Utilisateurs" %}</h3>
+<ul class="media-list">
+{% for user_r in user_results %}
+	<li class="media">
+		<a class="pull-left" href="{% url view_profile user_r.id %}">
+			{% avatar_polaroid user_r 50 %}
+		</a>
+		<div class="media-body">
+			<h4 class="media-heading" style="padding-top:3px"><a href="{% url view_profile user_r.id %}">{{ user_r }}</a></h4>
+		</div>
+		{{ user_r.get_profile.test }}
+	</li>
+{% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

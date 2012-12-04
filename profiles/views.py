@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
@@ -16,6 +16,11 @@ from actstream.actions import follow, unfollow
 
 from django.utils.translation import ugettext as _
 
+from haystack.query import SearchQuerySet
+from django.views.decorators.csrf import csrf_exempt
+
+import json
+
 @login_required
 def my_profile (request):
     return view(request, request.user.id)
@@ -31,6 +36,16 @@ def follow_profile (request, user_id):
     follow(request.user, profile_user, send_action=False)
     action.send(request.user, verb=_(u"suit désormais"), target=profile_user)
     return redirect(profile_user.get_profile())
+
+def usersearch (request, query=""):
+    if request.method == 'GET':
+        query = request.GET['q']
+    print query
+    results = SearchQuerySet().using('default').autocomplete(text=query)
+    names = []
+    for nr in results:
+        names.append(nr.object.user.username)
+    return HttpResponse(json.dumps({'usernames': names}))
 
 @login_required
 def edit (request):

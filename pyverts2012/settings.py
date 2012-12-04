@@ -136,6 +136,7 @@ INSTALLED_APPS = (
     'sorl.thumbnail',
     'jsonfield',
     'actstream',
+    'haystack',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
@@ -209,3 +210,14 @@ ugettext = lambda s: s
 LANGUAGES = (
     ('fr', ugettext('Français')),
 )
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_profiles'),
+    },
+    #'elements': {
+    #    'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+    #    'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_elements'),
+    #},
+}

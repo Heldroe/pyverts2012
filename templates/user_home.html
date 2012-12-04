@@ -1,0 +1,10 @@
+{% extends "content.html" %}
+{% load account %}
+{% load bootstrap_action %}
+{% block content %}
+<ul class="media-list">
+{% for action in user_stream %}
+{% bootstrap_action action %}
+{% endfor %}
+</ul>
+{% endblock %}
