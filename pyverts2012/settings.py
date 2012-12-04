@@ -132,6 +132,8 @@ INSTALLED_APPS = (
     'team360',
     'imagekit',
     'sorl.thumbnail',
+    'jsonfield',
+    'actstream',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
