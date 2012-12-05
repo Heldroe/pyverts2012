@@ -1,3 +1,10 @@
+/* Photo swipe */
+.gallery { list-style: none; padding: 0; margin: 0; }
+.gallery:after { clear: both; content: "."; display: block; height: 0; visibility: hidden; }
+.gallery li { float: left; width: 15%; }
+.gallery li a { display: block; margin: 5px; border: 1px solid #3c3c3c; }
+.gallery li img { display: block; width: 100%; height: auto; }
+
 .roundborder {
     border: 1px solid #DDDDDD;
     border-radius: 4px 4px 4px 4px;
@@ -44,6 +51,7 @@
     .profile_main {
         height: 100px;
     }
+    .gallery li { width: 15%; }
 }
 
 /* Portrait tablets */
@@ -55,6 +63,7 @@
     .profile_main h1 {
         font-size: 30px;
     }
+    .gallery li { width: 20%; }
 }
  
 /* Landscape phone to portrait tablet */
@@ -69,9 +78,11 @@
         margin: 0;
         width: 100px;
     }
+
+    .gallery li { width: 25%; }
 }
  
 /* Landscape phones and down */
 @media (max-width: 480px) {
-
+    .gallery li { width: 33.33333333%; }
 }

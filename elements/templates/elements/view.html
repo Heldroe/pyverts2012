@@ -1,6 +1,7 @@
 {% extends "content.html" %}
 {% load bootstrap_toolkit %}
 {% load i18n %}
+{% load photo_tags %}
 {% block content %}
 <h2>{{ element.name }}</h2>
 {% if element.owner == user %}
@@ -9,4 +10,9 @@
 <br /><br />
 <img src="{{ avatar_url }}" />
 <p>{{ element.description }}</p>
+<ul id="Gallery" class="gallery">
+{% for photo in photos %}
+{% photo_swipe photo %}
+{% endfor %}
+</ul>
 {% endblock %}

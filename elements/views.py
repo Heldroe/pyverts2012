@@ -28,7 +28,9 @@ def view (request, element_id):
         avatar_url = element.avatar.url
     except ValueError:
         avatar_url = "" # default avatar
+    photos = Photo.objects.filter(element=element)
     return render(request, 'elements/view.html', {'element': element,
+                                                  'photos': photos,
                                                   'avatar_url': avatar_url})
 
 @login_required
