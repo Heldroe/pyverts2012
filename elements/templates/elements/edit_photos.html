@@ -1,0 +1,21 @@
+{% extends "content.html" %}
+{% load bootstrap_toolkit %}
+{% load i18n %}
+{% load photo_tags %}
+{% block content %}
+<h2>{% trans "Édition des photos" %}</h2>
+<a href="{% url element_add_photo element.id %}">{% trans "Ajouter une photo" %}</a>
+<ul class="media-list">
+{% for photo in photos %}
+	<li class="media">
+	<a class="pull-left" href="#">
+	{% photo photo 50 %}
+	</a>
+	<div class="media-body">
+	<h4 class="media-heading">{{ photo }}</h4>
+	{{ photo.description }}
+	</div>
+	</li>
+{% endfor %}
+</ul>
+{% endblock %}
