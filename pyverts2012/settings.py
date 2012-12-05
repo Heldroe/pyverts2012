@@ -132,7 +132,6 @@ INSTALLED_APPS = (
     'profiles',
     'elements',
     'team360',
-    'imagekit',
     'sorl.thumbnail',
     'jsonfield',
     'actstream',

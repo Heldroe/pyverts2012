@@ -26,10 +26,6 @@ def view (request, element_id):
     element = get_object_or_404(Element, id=element_id)
     main_pic = False
     cover_pic = False
-    try:
-        avatar_url = element.avatar.url
-    except ValueError:
-        avatar_url = "" # default avatar
     photos = Photo.objects.filter(element=element)
     try:
         main_pic = Photo.objects.get(element=element, main=True)
@@ -50,15 +46,17 @@ def edit (request, element_id):
     if element.owner != request.user:
         raise Http403
     if request.method == "POST":
-        form = ElementEditForm(request.POST, request.FILES, instance=element)
+        form = ElementEditForm(request.POST, instance=element)
         if form.is_valid():
             element = form.save(commit=False)
             element.save()
             return redirect(element)
     else:
         form = ElementEditForm(instance=element)
+    photos = Photo.objects.filter(element=element)
     return render(request, 'elements/edit.html', {'element': element,
-                                                  'form': form})
+                                                  'form': form,
+                                                  'photos': photos})
 
 @login_required
 def edit_photos (request, element_id):
@@ -77,7 +75,7 @@ def add_photo (request, element_id):
         form = PhotoAddForm(request.POST, request.FILES, instance=Photo(element=element))
         if form.is_valid():
             form.save()
-            return redirect(reverse('elements.views.edit_photos', args=[str(element.id)]))
+            return redirect(reverse('elements.views.edit', args=[str(element.id)]))
     else:
         form = PhotoAddForm(instance=Photo(element=element))
     return render(request, 'elements/add_photo.html', {'element': element, 'form': form})
@@ -96,7 +94,7 @@ def main_photo (request, element_id, photo_id):
         pass
     photo.main = True
     photo.save()
-    return redirect(reverse('elements.views.edit_photos', args=[str(element.id)]))
+    return redirect(reverse('elements.views.edit', args=[str(element.id)]))
 
 @login_required
 def cover_photo (request, element_id, photo_id):
@@ -112,4 +110,4 @@ def cover_photo (request, element_id, photo_id):
         pass
     photo.cover = True
     photo.save()
-    return redirect(reverse('elements.views.edit_photos', args=[str(element.id)]))
+    return redirect(reverse('elements.views.edit', args=[str(element.id)]))
