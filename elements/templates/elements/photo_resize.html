@@ -1,0 +1,7 @@
+{% load thumbnail %}
+{% load staticfiles %}
+{% thumbnail photo.picture 1000 as big %}
+    {% thumbnail photo.picture size as small %}
+        <a href="{{ big.url }}" title="{{ photo }}"><img src="{{ small.url }}" alt="{{ photo }}"></a>
+    {% endthumbnail %}
+{% endthumbnail %}

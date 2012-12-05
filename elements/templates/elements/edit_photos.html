@@ -23,6 +23,7 @@
 	{% else %}
 		<a class="btn btn-mini" href="{% url element_cover_photo element.id photo.id %}">{% trans "Couverture" %}</a>
 	{% endif %}
+	<a class="btn btn-mini btn-error" href="{% url element_delete_photo element.id photo.id %}">{% trans "Supprimer" %}</a>
 	</div>
 	</li>
 {% endfor %}

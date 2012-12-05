@@ -15,22 +15,34 @@
 <div class="cover_title">
 	<h1>{{ element.name }}</h1>
 </div>
-{% else %}
 {% endif %}
 </div>
-<div class="visible-phone">
+<div {% if cover_photo %}class="visible-phone"{% endif %}>
 	<h1 class="pull-left">{{ element.name }}</h1>
 	{% if element.owner == user %}
-	<a class="btn btn-success pull-right" href="{% url edit_element element.id %}">{% trans "Modifier" %}</a>
+	<a class="btn btn-success pull-right" style="margin-top:10px" href="{% url edit_element element.id %}">{% trans "Modifier" %}</a>
 	{% endif %}
 </div>
 <div class="clearfix"></div>
-<br /><br />
 <!--<p>{{ element.description }}</p>-->
+<div class="row-fluid">
+<div class="span8">
 <h3>{% trans "Photos" %}</h3>
 <ul id="Gallery" class="gallery">
 {% for photo in photos %}
 {% photo_swipe photo %}
 {% endfor %}
 </ul>
+</div>
+<div class="span4">
+	<div class="thumbnail" style="margin-top: 10px; text-align: center">
+		{% if main_photo %}
+			{% photo_resize main_photo 360 %}
+		{% endif %}
+		<div class="caption">
+			{{ element.description }}
+		</div>
+	</div>
+</div>
+</div>
 {% endblock %}

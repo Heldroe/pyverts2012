@@ -111,3 +111,12 @@ def cover_photo (request, element_id, photo_id):
     photo.cover = True
     photo.save()
     return redirect(reverse('elements.views.edit', args=[str(element.id)]))
+
+@login_required
+def delete_photo (request, element_id, photo_id):
+    element = get_object_or_404(Element, id=element_id)
+    photo = get_object_or_404(Photo, id=photo_id)
+    if element.owner != request.user or photo.element != element:
+        raise Http403
+    photo.delete()
+    return redirect(reverse('elements.views.edit', args=[str(element.id)]))

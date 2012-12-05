@@ -3,7 +3,7 @@
 {% load i18n %}
 {% load photo_tags %}
 {% block content %}
-<h2>{{ element.name }}</h2>
+<h2><a href="{% url view_element element.id %}">{{ element.name }}</a></h2>
 <form action="{% url edit_element element.id %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form|as_bootstrap }}
@@ -12,7 +12,7 @@
     </div>
 </form>
 <h3>{% trans "Édition des photos" %}</h3>
-<a href="{% url element_add_photo element.id %}">{% trans "Ajouter une photo" %}</a>
+<a href="{% url element_add_photo element.id %}" class="btn btn-success" style="margin-bottom: 10px">{% trans "Ajouter une photo" %}</a>
 <ul class="media-list">
 {% for photo in photos %}
 	<li class="media">
@@ -31,6 +31,7 @@
 	{% else %}
 		<a class="btn btn-mini" href="{% url element_cover_photo element.id photo.id %}">{% trans "Couverture" %}</a>
 	{% endif %}
+	<a class="btn btn-mini btn-danger" href="{% url element_delete_photo element.id photo.id %}">{% trans "Supprimer" %}</a>
 	</div>
 	</li>
 {% endfor %}
