@@ -6,6 +6,8 @@ from django.shortcuts import redirect
 
 from haystack.query import SearchQuerySet
 
+from elements.models import Photo
+
 def home (request):
     if request.user.is_authenticated():
         u_stream = user_stream(request.user)
@@ -23,12 +25,16 @@ def search (request):
         print e_results
         u_results = SearchQuerySet().filter(profile=query)
         print u_results
-        #results = SearchQuerySet().using('default').filter(text=query)
         if len(e_results) == 1 and len(u_results) == 0:
             return redirect(e_results[0].object)
         elif len(u_results) == 1 and len(e_results) == 0:
             return redirect(u_results[0].object)
         for nr in e_results:
+            try:
+                main_pic = Photo.objects.get(element=nr.object, main=True)
+                nr.object.main_pic = main_pic
+            except Photo.DoesNotExist:
+                pass
             tab_e_results.append(nr.object)
         for nr in u_results:
             tab_u_results.append(nr.object.user)
