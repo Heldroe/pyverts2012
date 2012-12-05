@@ -24,14 +24,25 @@ def list (request):
 
 def view (request, element_id):
     element = get_object_or_404(Element, id=element_id)
+    main_pic = False
+    cover_pic = False
     try:
         avatar_url = element.avatar.url
     except ValueError:
         avatar_url = "" # default avatar
     photos = Photo.objects.filter(element=element)
+    try:
+        main_pic = Photo.objects.get(element=element, main=True)
+    except Photo.DoesNotExist:
+        pass
+    try:
+        cover_pic = Photo.objects.get(element=element, cover=True)
+    except Photo.DoesNotExist:
+        pass
     return render(request, 'elements/view.html', {'element': element,
                                                   'photos': photos,
-                                                  'avatar_url': avatar_url})
+                                                  'main_photo': main_pic,
+                                                  'cover_photo': cover_pic})
 
 @login_required
 def edit (request, element_id):
@@ -70,3 +81,35 @@ def add_photo (request, element_id):
     else:
         form = PhotoAddForm(instance=Photo(element=element))
     return render(request, 'elements/add_photo.html', {'element': element, 'form': form})
+
+@login_required
+def main_photo (request, element_id, photo_id):
+    element = get_object_or_404(Element, id=element_id)
+    photo = get_object_or_404(Photo, id=photo_id)
+    if element.owner != request.user or photo.element != element:
+        raise Http403
+    try:
+        old_main = Photo.objects.get(element=element, main=True)
+        old_main.main = False
+        old_main.save()
+    except Photo.DoesNotExist:
+        pass
+    photo.main = True
+    photo.save()
+    return redirect(reverse('elements.views.edit_photos', args=[str(element.id)]))
+
+@login_required
+def cover_photo (request, element_id, photo_id):
+    element = get_object_or_404(Element, id=element_id)
+    photo = get_object_or_404(Photo, id=photo_id)
+    if element.owner != request.user or photo.element != element:
+        raise Http403
+    try:
+        old_cover = Photo.objects.get(element=element, cover=True)
+        old_cover.cover = False
+        old_cover.save()
+    except Photo.DoesNotExist:
+        pass
+    photo.cover = True
+    photo.save()
+    return redirect(reverse('elements.views.edit_photos', args=[str(element.id)]))

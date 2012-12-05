@@ -13,7 +13,16 @@
 	</a>
 	<div class="media-body">
 	<h4 class="media-heading">{{ photo }}</h4>
-	{{ photo.description }}
+	{% if photo.main %}
+		<a class="btn btn-success btn-mini disabled" href="#">{% trans "Principale" %}</a>
+	{% else %}
+		<a class="btn btn-mini" href="{% url element_main_photo element.id photo.id %}">{% trans "Principale" %}</a>
+	{% endif %}
+	{% if photo.cover %}
+		<a class="btn btn-success btn-mini disabled" href="#">{% trans "Couverture" %}</a>
+	{% else %}
+		<a class="btn btn-mini" href="{% url element_cover_photo element.id photo.id %}">{% trans "Couverture" %}</a>
+	{% endif %}
 	</div>
 	</li>
 {% endfor %}

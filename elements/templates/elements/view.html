@@ -1,15 +1,33 @@
 {% extends "content.html" %}
+{% load thumbnail %}
 {% load bootstrap_toolkit %}
 {% load i18n %}
 {% load photo_tags %}
 {% block content %}
-<h2>{{ element.name }}</h2>
+<div class="cover_box hidden-phone">
+{% if cover_photo %}
+{% thumbnail cover_photo.picture "1280x300" crop="center" as im %}
+    <img class="cover_photo" src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ photo }}">
+{% endthumbnail %}
 {% if element.owner == user %}
-<a class="btn btn-mini" href="{% url edit_element element.id %}">Edit</a>
+	<a class="btn btn-success element_edit" href="{% url edit_element element.id %}">{% trans "Modifier" %}</a>
 {% endif %}
+<div class="cover_title">
+	<h1>{{ element.name }}</h1>
+</div>
+{% else %}
+{% endif %}
+</div>
+<div class="visible-phone">
+	<h1 class="pull-left">{{ element.name }}</h1>
+	{% if element.owner == user %}
+	<a class="btn btn-success pull-right" href="{% url edit_element element.id %}">{% trans "Modifier" %}</a>
+	{% endif %}
+</div>
+<div class="clearfix"></div>
 <br /><br />
-<img src="{{ avatar_url }}" />
-<p>{{ element.description }}</p>
+<!--<p>{{ element.description }}</p>-->
+<h3>{% trans "Photos" %}</h3>
 <ul id="Gallery" class="gallery">
 {% for photo in photos %}
 {% photo_swipe photo %}
