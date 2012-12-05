@@ -15,13 +15,21 @@ def home (request):
 
 @csrf_exempt
 def search (request):
-    user_results = []
+    tab_e_results = []
+    tab_u_results = []
     if request.method == 'GET':
         query = request.GET['q']
-        results = SearchQuerySet().using('default').filter(text=query)
-        if len(results) == 1:
-            return redirect(results[0].object)
-        else:
-            for nr in results:
-                user_results.append(nr.object.user)
-    return render(request, 'search.html', {'user_results': user_results})
+        e_results = SearchQuerySet().filter(element=query)
+        print e_results
+        u_results = SearchQuerySet().filter(profile=query)
+        print u_results
+        #results = SearchQuerySet().using('default').filter(text=query)
+        if len(e_results) == 1 and len(u_results) == 0:
+            return redirect(e_results[0].object)
+        elif len(u_results) == 1 and len(e_results) == 0:
+            return redirect(u_results[0].object)
+        for nr in e_results:
+            tab_e_results.append(nr.object)
+        for nr in u_results:
+            tab_u_results.append(nr.object.user)
+    return render(request, 'search.html', {'user_results': tab_u_results, 'element_results': tab_e_results})

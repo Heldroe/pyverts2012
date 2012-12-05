@@ -41,7 +41,7 @@ def usersearch (request, query=""):
     if request.method == 'GET':
         query = request.GET['q']
     print query
-    results = SearchQuerySet().using('default').autocomplete(text=query)
+    results = SearchQuerySet().autocomplete(profile=query)
     names = []
     for nr in results:
         names.append(nr.object.user.username)

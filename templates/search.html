@@ -1,8 +1,25 @@
 {% extends "content.html" %}
 {% load i18n %}
 {% load user_avatar %}
+{% load photo_tags %}
 {% block content %}
 <h1>{% trans "Résultats" %}</h1>
+{% if element_results %}
+<h3>{% trans "Éléments" %}</h3>
+<ul class="media-list">
+{% for element_r in element_results %}
+	<li class="media">
+		<a class="pull-left" href="{% url view_element element_r.id %}">
+			
+		</a>
+		<div class="media-body">
+			<h4 class="media-heading" style="padding-top:3px"><a href="{% url view_element element_r.id %}">{{ element_r.name }}</a></h4>
+		</div>
+		{{ element_r.description }}
+	</li>
+{% endfor %}
+</ul>
+{% endif %}
 {% if user_results %}
 <h3>{% trans "Utilisateurs" %}</h3>
 <ul class="media-list">

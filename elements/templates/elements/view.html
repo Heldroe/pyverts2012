@@ -27,12 +27,14 @@
 <!--<p>{{ element.description }}</p>-->
 <div class="row-fluid">
 <div class="span8">
+{% if photos %}
 <h3>{% trans "Photos" %}</h3>
 <ul id="Gallery" class="gallery">
 {% for photo in photos %}
 {% photo_swipe photo %}
 {% endfor %}
 </ul>
+{% endif %}
 </div>
 <div class="span4">
 	<div class="thumbnail" style="margin-top: 10px; text-align: center">
