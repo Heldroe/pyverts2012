@@ -5,6 +5,7 @@
 {% load staticfiles %}
 {% load socialaccount %}
 {% block body %}
+<a style="display:none" href="#end_of_menu">{% trans "Fin du menu" %}</a>
 <div class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
@@ -61,7 +62,7 @@
     </div>
   </div>
 </div>
-<div class="container">
+<div class="container" id="end_of_menu">
 {% block content %}
 {% endblock %}
 </div>
