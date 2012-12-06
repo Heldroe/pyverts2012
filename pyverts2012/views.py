@@ -3,7 +3,7 @@ from actstream.models import actor_stream, user_stream
 
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import redirect
-
+from django.core.urlresolvers import reverse
 from haystack.query import SearchQuerySet
 
 from elements.models import Photo
@@ -39,3 +39,14 @@ def search (request):
         for nr in u_results:
             tab_u_results.append(nr.object.user)
     return render(request, 'search.html', {'user_results': tab_u_results, 'element_results': tab_e_results})
+
+def theme (request, new_theme):
+    try:
+        print request.session["theme"]
+    except KeyError:
+        print "MERDE"
+    if (new_theme == 'canada'):
+        request.session["theme"] = "content_ac.html"
+    else:
+        request.session["theme"] = "content.html"
+    return redirect(reverse('pyverts2012.views.home'))

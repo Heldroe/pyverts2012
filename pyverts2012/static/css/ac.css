@@ -1,0 +1,115 @@
+/* Photo swipe */
+.gallery { list-style: none; padding: 0; margin: 0; }
+.gallery:after { clear: both; content: "."; display: block; height: 0; visibility: hidden; }
+.gallery li { float: left; width: 15%; }
+.gallery li a { display: block; margin: 5px; border: 1px solid #3c3c3c; }
+.gallery li img { display: block; width: 100%; height: auto; }
+
+.element_edit {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.cover_box {
+    position: relative;
+    margin-top: -20px;
+}
+
+.cover_title {
+    color: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.cover_title h1 {
+    margin-left: 10px;
+}
+
+.roundborder {
+    border: 1px solid #DDDDDD;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+}
+
+.profile_more {
+    margin-top: 20px;
+    padding: 5px;
+}
+
+.profile_main {
+    background-color: white;
+    height: 120px;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
+}
+
+.profile_main .thumbnail {
+    background-color: white;
+    margin-top: -10px;
+    margin-left: 20px;
+}
+
+.follow_button {
+    margin: 10px;
+}
+
+/* Large desktop */
+@media (min-width: 1200px) {
+    .profile_main {
+        height: 130px;
+    }
+
+    .profile_main h1 {
+        font-size: 50px;
+        margin-top: 15px;
+    }
+}
+ 
+/* Default */
+@media (min-width: 980px) and (max-width: 1199px) {
+    .profile_main {
+        height: 100px;
+    }
+    .gallery li { width: 15%; }
+
+    .cover_title h1 { font-size: 30px; margin: 5px 0 2px 10px; }
+}
+
+/* Portrait tablets */
+@media (min-width: 768px) and (max-width: 979px) {
+    .profile_main {
+        height: 65px;
+    }
+
+    .profile_main h1 {
+        font-size: 30px;
+    }
+    .gallery li { width: 20%; }
+
+    .cover_title h1 { font-size: 24px; margin: 2px 0 2px 10px; }
+}
+ 
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+    .profile_main {
+        background: none;
+        border: none;
+        box-shadow: none;
+    }
+
+    .profile_main .thumbnail {
+        margin: 0;
+        width: 100px;
+    }
+
+    .gallery li { width: 25%; }
+}
+ 
+/* Landscape phones and down */
+@media (max-width: 480px) {
+    .gallery li { width: 33.33333333%; }
+}

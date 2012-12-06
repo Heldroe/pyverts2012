@@ -192,6 +192,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
     "allauth.account.context_processors.account",
     "allauth.socialaccount.context_processors.socialaccount",
+    "pyverts2012.context_processors.theme"
 )
 
 AUTH_PROFILE_MODULE = 'profiles.UserProfile'
@@ -216,3 +217,5 @@ HAYSTACK_CONNECTIONS = {
         'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_profiles'),
     },
 }
+
+SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
