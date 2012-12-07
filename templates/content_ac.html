@@ -16,8 +16,8 @@
       <a class="brand" href="{% url home %}">PatriWatch</a>
       <div class="nav-collapse collapse">
         <ul class="nav">
-          <li{% if home %} class="active"{% endif %}><a href="{% url home %}">Home</a></li>
-          <li><a href="{% url theme "default" %}">Defaut</a></li>
+          <li{% if home %} class="active"{% endif %}><a href="{% url home %}">Accueil</a></li>
+          <li><a href="{% url theme "default" %}">Thème original</a></li>
           <li><a href="{% url theme "canada" %}">Canada</a></li>
           <!--<li><a href="#about">About</a></li>-->
           <!--<li><a href="#contact">Contact</a></li>-->
@@ -27,7 +27,7 @@
         </form>
         <ul class="nav pull-right">
           {% if not user.is_authenticated %}
-          <li><a href="{% url account_signup %}">Sign Up</a></li>
+          <li><a href="{% url account_signup %}">S'inscrire</a></li>
           <li class="divider-vertical"></li>
           <li class="dropdown">
             <a class="dropdown-toggle" href="#" data-toggle="dropdown">{% trans "Connexion" %} <strong class="caret"></strong></a>
