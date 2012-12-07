@@ -69,7 +69,7 @@
 	background-color:#732A0B;
 	color:white;
 	text-shadow:2px 2px 4px black;
-	background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
+	background-image: -moz-linear-gradient(top, rgba(0,0,0,0.1), rgba(0,0,0,1));
 	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(0,0,0,0.1)), to(rgba(0,0,0,1)));
 	background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6));
 	background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6));
