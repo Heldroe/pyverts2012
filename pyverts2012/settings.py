@@ -201,6 +201,12 @@ LOGIN_REDIRECT_URL = '/profile/'
 
 THUMBNAIL_DEBUG = True
 
+ACTSTREAM_SETTINGS = {
+    'MODELS': ('auth.user', 'elements.element'),
+}
+
+#ACTSTREAM_SETTINGS['MODELS'] = ('auth.user', 'elements.element')
+
 LOCALE_PATHS = (
     os.path.join(PROJECT_ROOT, 'locale'),
 )
