@@ -7,14 +7,13 @@ django-activity-stream==0.4.4
 django-allauth==0.8.2
 django-appconf==0.5
 django-bootstrap-toolkit==2.6.16
+django-compressor==1.2
+django-easy-maps==0.7.3
 -e git+https://github.com/toastdriven/django-haystack.git@9d92d4da0a1ec75978fc3949375dda9a1707469f#egg=django_haystack-dev
 django-jsonfield==0.8.12
+geopy==0.94.2
 httplib2==0.7.7
 oauth2==1.5.211
 python-openid==2.2.5
 sorl-thumbnail==11.12
 wsgiref==0.1.2
-python-memcached==1.48
-django-compressor==1.2
-django-easy-maps==0.7.3
-geopy==0.94.2

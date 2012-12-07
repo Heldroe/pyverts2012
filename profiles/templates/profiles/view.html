@@ -1,4 +1,4 @@
-{% extends "content.html" %}
+{% extends theme %}
 {% load i18n %}
 {% load account %}
 {% load thumbnail %}
@@ -6,6 +6,7 @@
 {% load activity_tags %}
 {% load bootstrap_action %}
 {% block content %}
+<span style="display:none">{{ theme }}</span>
 <div class="profile_main hidden-phone">
     <div class="row-fluid">
     <div class="span2">
