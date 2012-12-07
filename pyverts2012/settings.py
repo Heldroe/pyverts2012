@@ -136,6 +136,7 @@ INSTALLED_APPS = (
     'jsonfield',
     'actstream',
     'haystack',
+    'easy_maps',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',

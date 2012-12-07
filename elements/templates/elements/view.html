@@ -3,6 +3,7 @@
 {% load bootstrap_toolkit %}
 {% load i18n %}
 {% load photo_tags %}
+{% load easy_maps_tags %}
 {% block content %}
 {{ element.db_url }}
 <div class="cover_box hidden-phone">
@@ -67,9 +68,12 @@
 		</div>
 	</div>
 </div>
-
-
+{% if gmap %}
 <div class="row-fluid">
+{% easy_map gad 600 200 %}
+</div>
+{% endif %}
+<div class="row-fluid" style="margin-bottom:20px">
 <div class="span8">
 {% if photos %}
 <h3>{% trans "Photos" %}</h3>

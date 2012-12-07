@@ -55,7 +55,15 @@ def view (request, element_id):
         cover_pic = Photo.objects.get(element=element, cover=True)
     except Photo.DoesNotExist:
         pass
-    print element.db_img
+    gmap = False
+    gad = ""
+    print "a"+element.latitude+"b"
+    print "a"+element.longitude+"b"
+    if len(element.latitude) != 0 and len(element.longitude) != 0:
+        print "ALO"
+        gmap = True
+        gad = element.latitude+' '+element.longitude
+
     el = element.db_img.split('/')
     el[-1] = quote(el[-1].encode('utf8'))
     db_url = '/'.join(el)
@@ -68,7 +76,9 @@ def view (request, element_id):
                                                   'recommended': recommended,
                                                   'actions': actions,
                                                   'recommends': recommends,
-                                                  'db_url': db_url})
+                                                  'db_url': db_url,
+                                                  'gmap': gmap,
+                                                  'gad': gad})
 
 @login_required
 def edit (request, element_id):
