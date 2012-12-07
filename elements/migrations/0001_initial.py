@@ -8,23 +8,91 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
+        # Adding model 'Category'
+        db.create_table('elements_category', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=200)),
+            ('plural', self.gf('django.db.models.fields.CharField')(max_length=200, blank=True)),
+            ('description', self.gf('django.db.models.fields.CharField')(max_length=1000)),
+            ('verb_singular', self.gf('django.db.models.fields.CharField')(max_length=100)),
+            ('verb_plural', self.gf('django.db.models.fields.CharField')(max_length=100)),
+            ('verb_plural_plural', self.gf('django.db.models.fields.CharField')(max_length=100)),
+            ('picture', self.gf('sorl.thumbnail.fields.ImageField')(max_length=100, blank=True)),
+        ))
+        db.send_create_signal('elements', ['Category'])
+
         # Adding model 'Element'
         db.create_table('elements_element', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('owner', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=140)),
-            ('description', self.gf('django.db.models.fields.CharField')(max_length=500)),
-            ('original_avatar', self.gf('django.db.models.fields.files.ImageField')(max_length=100)),
+            ('description', self.gf('django.db.models.fields.CharField')(max_length=5000)),
+            ('category', self.gf('django.db.models.fields.related.ForeignKey')(default=1, to=orm['elements.Category'])),
+            ('db_uri', self.gf('django.db.models.fields.CharField')(default='', max_length=5000, blank=True)),
         ))
         db.send_create_signal('elements', ['Element'])
 
+        # Adding model 'Photo'
+        db.create_table('elements_photo', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('element', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['elements.Element'])),
+            ('picture', self.gf('sorl.thumbnail.fields.ImageField')(max_length=100)),
+            ('main', self.gf('django.db.models.fields.BooleanField')(default=False)),
+            ('cover', self.gf('django.db.models.fields.BooleanField')(default=False)),
+            ('title', self.gf('django.db.models.fields.CharField')(default='', max_length=140, blank=True)),
+            ('description', self.gf('django.db.models.fields.CharField')(default='', max_length=500, blank=True)),
+        ))
+        db.send_create_signal('elements', ['Photo'])
+
+        # Adding model 'ElementRecommendation'
+        db.create_table('elements_elementrecommendation', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
+            ('element', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['elements.Element'])),
+        ))
+        db.send_create_signal('elements', ['ElementRecommendation'])
+
+        # Adding model 'ElementAction'
+        db.create_table('elements_elementaction', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['auth.User'])),
+            ('element', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['elements.Element'])),
+        ))
+        db.send_create_signal('elements', ['ElementAction'])
+
 
     def backwards(self, orm):
+        # Deleting model 'Category'
+        db.delete_table('elements_category')
+
         # Deleting model 'Element'
         db.delete_table('elements_element')
 
+        # Deleting model 'Photo'
+        db.delete_table('elements_photo')
+
+        # Deleting model 'ElementRecommendation'
+        db.delete_table('elements_elementrecommendation')
+
+        # Deleting model 'ElementAction'
+        db.delete_table('elements_elementaction')
+
 
     models = {
+        'actstream.action': {
+            'Meta': {'ordering': "('-timestamp',)", 'object_name': 'Action'},
+            'action_object_content_type': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'action_object'", 'null': 'True', 'to': "orm['contenttypes.ContentType']"}),
+            'action_object_object_id': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
+            'actor_content_type': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'actor'", 'to': "orm['contenttypes.ContentType']"}),
+            'actor_object_id': ('django.db.models.fields.CharField', [], {'max_length': '255'}),
+            'description': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'public': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
+            'target_content_type': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'target'", 'null': 'True', 'to': "orm['contenttypes.ContentType']"}),
+            'target_object_id': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
+            'timestamp': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
+            'verb': ('django.db.models.fields.CharField', [], {'max_length': '255'})
+        },
         'auth.group': {
             'Meta': {'object_name': 'Group'},
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
@@ -61,13 +129,47 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
+        'elements.category': {
+            'Meta': {'object_name': 'Category'},
+            'description': ('django.db.models.fields.CharField', [], {'max_length': '1000'}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
+            'picture': ('sorl.thumbnail.fields.ImageField', [], {'max_length': '100', 'blank': 'True'}),
+            'plural': ('django.db.models.fields.CharField', [], {'max_length': '200', 'blank': 'True'}),
+            'verb_plural': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'verb_plural_plural': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'verb_singular': ('django.db.models.fields.CharField', [], {'max_length': '100'})
+        },
         'elements.element': {
             'Meta': {'object_name': 'Element'},
-            'description': ('django.db.models.fields.CharField', [], {'max_length': '500'}),
+            'category': ('django.db.models.fields.related.ForeignKey', [], {'default': '1', 'to': "orm['elements.Category']"}),
+            'db_uri': ('django.db.models.fields.CharField', [], {'default': "''", 'max_length': '5000', 'blank': 'True'}),
+            'description': ('django.db.models.fields.CharField', [], {'max_length': '5000'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '140'}),
-            'original_avatar': ('django.db.models.fields.files.ImageField', [], {'max_length': '100'}),
             'owner': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})
+        },
+        'elements.elementaction': {
+            'Meta': {'object_name': 'ElementAction'},
+            'element': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['elements.Element']"}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})
+        },
+        'elements.elementrecommendation': {
+            'Meta': {'object_name': 'ElementRecommendation'},
+            'element': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['elements.Element']"}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']"})
+        },
+        'elements.photo': {
+            'Meta': {'object_name': 'Photo'},
+            'cover': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'description': ('django.db.models.fields.CharField', [], {'default': "''", 'max_length': '500', 'blank': 'True'}),
+            'element': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['elements.Element']"}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'main': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'picture': ('sorl.thumbnail.fields.ImageField', [], {'max_length': '100'}),
+            'title': ('django.db.models.fields.CharField', [], {'default': "''", 'max_length': '140', 'blank': 'True'})
         }
     }
 

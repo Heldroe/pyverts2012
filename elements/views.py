@@ -1,11 +1,17 @@
 from django.shortcuts import render
 from elements.forms import ElementCreateForm, ElementEditForm, PhotoAddForm
-from elements.models import Element, Photo
+from elements.models import Element, Photo, ElementAction, ElementRecommendation
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from middleware.http import Http403
 from django.shortcuts import redirect
 from django.core.urlresolvers import reverse
+
+from actstream import action as publish_action
+from django.utils.translation import ugettext as _
+
+from urllib import quote
+
 
 @login_required
 def create (request):
@@ -26,7 +32,21 @@ def view (request, element_id):
     element = get_object_or_404(Element, id=element_id)
     main_pic = False
     cover_pic = False
+    actions = ElementAction.objects.filter(element=element).count()
+    recommends = ElementRecommendation.objects.filter(element=element).count()
     photos = Photo.objects.filter(element=element)
+    if request.user.is_authenticated():
+        try:
+            actioned = ElementAction.objects.get(element=element, user=request.user)
+        except ElementAction.DoesNotExist:
+            actioned = False
+        try:
+            recommended = ElementRecommendation.objects.get(element=element, user=request.user)
+        except ElementRecommendation.DoesNotExist:
+            recommended = False
+    else:
+        actioned = False
+        recommended = False
     try:
         main_pic = Photo.objects.get(element=element, main=True)
     except Photo.DoesNotExist:
@@ -35,10 +55,20 @@ def view (request, element_id):
         cover_pic = Photo.objects.get(element=element, cover=True)
     except Photo.DoesNotExist:
         pass
+    print element.db_img
+    el = element.db_img.split('/')
+    el[-1] = quote(el[-1].encode('utf8'))
+    db_url = '/'.join(el)
+    print db_url
     return render(request, 'elements/view.html', {'element': element,
                                                   'photos': photos,
                                                   'main_photo': main_pic,
-                                                  'cover_photo': cover_pic})
+                                                  'cover_photo': cover_pic,
+                                                  'actioned': actioned,
+                                                  'recommended': recommended,
+                                                  'actions': actions,
+                                                  'recommends': recommends,
+                                                  'db_url': db_url})
 
 @login_required
 def edit (request, element_id):
@@ -120,3 +150,25 @@ def delete_photo (request, element_id, photo_id):
         raise Http403
     photo.delete()
     return redirect(reverse('elements.views.edit', args=[str(element.id)]))
+
+@login_required
+def action (request, element_id):
+    element = get_object_or_404(Element, id=element_id)
+    try:
+        u_action = ElementAction.objects.get(element=element, user=request.user)
+    except ElementAction.DoesNotExist:
+        u_action = ElementAction(element=element, user=request.user)
+        u_action.save()
+        publish_action.send(request.user, verb=element.category.verb_plural, target=element)
+    return redirect(reverse('elements.views.view', args=[str(element.id)]))
+
+@login_required
+def recommend (request, element_id):
+    element = get_object_or_404(Element, id=element_id)
+    try:
+        u_recommendation = ElementRecommendation.objects.get(element=element, user=request.user)
+    except ElementRecommendation.DoesNotExist:
+        u_recommendation = ElementRecommendation(element=element, user=request.user)
+        u_recommendation.save()
+        publish_action.send(request.user, verb=_(u'recommande'), target=element)
+    return redirect(reverse('elements.views.view', args=[str(element.id)]))

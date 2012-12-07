@@ -1,4 +1,4 @@
-{% extends "ac_base.html" %}
+{% extends "bootstrap_base.html" %}
 {% load i18n %}
 {% load account %}
 {% load user_avatar %}
@@ -62,8 +62,24 @@
     </div>
   </div>
 </div>
+<<<<<<< HEAD
 <div class="container" id="end_of_menu">
 {% block content %}
 {% endblock %}
+=======
+<div class="container">
+  <div class="content">
+  <div class="wrapper">
+    <div class="proper-content">
+      {% block content %}
+      {% endblock %}
+    </div><!-- /.proper-content -->
+    <div class="push"></div>
+  </div><!-- /.wrapper -->
+  <div class="footer-wrapper">
+    <footer>That's the sticky footer</footer>
+  </div>
+  </div>
+>>>>>>> bf7f10e7a0a6949a87cc190490a843b733cb71f4
 </div>
 {% endblock %}

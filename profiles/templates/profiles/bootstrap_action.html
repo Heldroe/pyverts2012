@@ -7,7 +7,7 @@
 <div class="media-body">
 <h4 class="media-heading"><a href="{{ action.actor.get_profile.get_absolute_url }}">{{ action.actor }}</a>
 {{ action.verb }}{% if action.target %}
-    {% if action.target.get_profile.get_absolute_url %}<a href="{{ action.target.get_profile.get_absolute_url }}">{{ action.target }}</a>{% else %}<a href="{{ action.target_url }}">{{ action.target }}</a>{% endif %}{% endif %}.</h4>
+    {% if action.target.get_profile.get_absolute_url %}<a href="{{ action.target.get_profile.get_absolute_url }}">{{ action.target }}</a>{% else %}<a href="{{ action.target.get_absolute_url }}">{{ action.target }}</a>{% endif %}{% endif %}.</h4>
 {% blocktrans with time=action.timestamp|timesince %}
 Il y a {{ time }}.
 {% endblocktrans %}
