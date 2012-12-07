@@ -19,6 +19,8 @@ $(function() {
         }
         return items;
     }});
+    konami = new Konami()
+    konami.load("http://ac.heldroe.org/");
 });
 
 (function(window, PhotoSwipe) {
