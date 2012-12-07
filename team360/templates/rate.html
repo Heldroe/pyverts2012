@@ -1,9 +1,15 @@
 {% extends "content.html" %}
+{% load bootstrap_toolkit %}
+{% load i18n %}
 {% block content %}
-<h3>Interface team 360</h3>
+<h3>Evaluez l'utilisateur {{ rated_user }} durant cette semaine :</h3>
 <ul>
-{% for rating in ratings %}
-<li>{{ rating }}</li>
-{% endfor %}
+<form action="{% url team360_rate user.id criterion_id %}" method="post">
+    {% csrf_token %}
+    {{ form|as_bootstrap }}
+    <div class="actions">
+        <button type="submit" class="btn primary">{% trans "Évaluer" %}</button>
+    </div>
+</form>
 </ul>
 {% endblock %}

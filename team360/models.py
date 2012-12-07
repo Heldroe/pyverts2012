@@ -21,10 +21,16 @@ class WeekRater(models.Model):
         return unicode(self.rater)
 
 class Rating(models.Model):
-    criterion = models.ForeignKey(Criterion)
-    value = models.IntegerField()
-    rater = models.ForeignKey(User, related_name='rating_rater')
-    rated = models.ForeignKey(User, related_name='rating_rated')
-    date = models.DateTimeField()
-    def __unicode__(self):
-        return unicode(self.rater)
+	BAR_CHOICES = (
+        (0, "Mauvais"),
+        (1, "Mediocre"),
+        (2, "Moyen"),
+        (3, "Bien"),
+    )
+	criterion = models.ForeignKey(Criterion)
+	value = models.IntegerField(blank=True, null=True, choices=BAR_CHOICES)
+	rater = models.ForeignKey(User, related_name='rating_rater')
+	rated = models.ForeignKey(User, related_name='rating_rated')
+	date = models.DateTimeField()
+	def __unicode__(self):
+		return unicode(self.rater)
