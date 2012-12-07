@@ -19,3 +19,29 @@
 	color:white;
 	text-shadow: 2px 2px 4px black;
 }
+.proper-content {
+	padding-top:0px;
+}
+
+.stickInWell {
+	margin-left: -19px;
+	margin-right: -19px;
+	margin-top: -19px;
+	margin-bottom:5px;
+	padding:2px;
+	border-radius:4px;
+}
+
+.radius4 {
+	border-radius:4px;
+}
+.home_gallery {
+	border:1px solid gray ;
+	float:left;
+	width:50px;
+	height:50px;
+	opacity:0.6;
+}
+.home_gallery:hover {
+	opacity:1;
+}
