@@ -5,7 +5,7 @@
 <h4>Cette semaine vous devez évaluer :</h4>
 <ul>
 {% for weekrater in ratedlist %}
-<li><a href="#">{% user_display weekrater.rated %}</a></li>
+<li><a href="/360/rate/{{ weekrater.rated.id }}/">{% user_display weekrater.rated %}</a></li>
 {% endfor %}
 </ul>
 {% endblock %}
