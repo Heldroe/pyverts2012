@@ -126,11 +126,11 @@ h1,h2,h3,h4,h5 {
 .canadianBottom {
 	height:125px;
 	background-color:#602711;
-	background-image: -moz-linear-gradient(top, rgba(96,39,17,1), rgba(96,39,17,0));
-	background-image: -webkit-gradient(linear, 0 10%, 0 100%, from(rgba(96,39,17,0)), to(rgba(0,0,0,1))));
-	background-image: -webkit-linear-gradient(top, rgba(96,39,17,0), rgba(0,0,0,1));
-	background-image: -o-linear-gradient(top, rgba(96,39,17,0), rgba(96,39,17,1));
-	background-image: linear-gradient(to bottom, rgba(96,39,17,0), rgba(96,39,17,1));
+	background-image: -moz-linear-gradient(top, rgba(96,39,17,1), rgba(0,0,0,1));
+	background-image: -webkit-gradient(linear, 0 10%, 0 100%, from(rgba(96,39,17,1)), to(rgba(0,0,0,1))));
+	background-image: -webkit-linear-gradient(top, rgba(96,39,17,1), rgba(0,0,0,1));
+	background-image: -o-linear-gradient(top, rgba(96,39,17,1), rgba(96,39,17,1));
+	background-image: linear-gradient(to bottom, rgba(96,39,17,1), rgba(96,39,17,1));
 }
 .dropdown-menu li > a:hover, .dropdown-menu li > a:focus, .dropdown-submenu:hover > a {
 	background-color:#602711;
