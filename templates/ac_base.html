@@ -10,6 +10,7 @@
     <link href="{% static "css/bootstrap.css" %}" rel="stylesheet">
     <link href="{% static "css/photoswipe.css" %}" rel="stylesheet">
     <link href="{% static "css/main.css" %}" rel="stylesheet">
+    <link href="{% static "css/custom.css" %}" rel="stylesheet">
     <link href="{% static "css/ac.css" %}" rel="stylesheet">
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -18,8 +19,16 @@
     <link href="{% static "css/bootstrap-responsive.css" %}" rel="stylesheet">
   </head>
   <body>
+	<div class="canadian_wrapper">
+		<div class="header-fun">
+			<div class="header-img"></div>
+			<!--<img src='img/cigogne.png' style='height:200px;margin-left:20%;position:absolute;'/>
+			<img src='img/caribou.png' style='height:260px;margin-left:10%;position:absolute;'/>-->
+		</div>
   	{% block body %}
   	{% endblock %}
+	</div>
+	<div class="canadianBottom"></div>
     <script src="{% static "js/jquery.js" %}"></script>
     <script src="{% static "js/bootstrap.min.js" %}"></script>
     <script src="{% static "js/klass.min.js" %}"></script>

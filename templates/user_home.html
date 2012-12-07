@@ -2,9 +2,75 @@
 {% load account %}
 {% load bootstrap_action %}
 {% block content %}
-<ul class="media-list">
-{% for action in user_stream %}
-{% bootstrap_action action %}
-{% endfor %}
-</ul>
+<div class="row-fluid">
+			<div class="span8">
+				<div id="spotlight" class="alert translucentBGdark" style="background-image:url(monument2.jpg);padding:0;height:150px;border:none;">
+					<div class="translucentBGdark" style="width:100%;height:100%;">
+						<div style="padding:5px;">
+							<h3 class="noMarginTop">
+							  Lumière sur...
+							</h3>
+							<div style="min-height:60px;margin-left:35px;margin-top:10px;">
+							<img class="img-polaroid" style="width:50px;height:50px;float:left;">
+								<h5 class="noMarginTop">Nom Monument blabla</h5>
+								Bis
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span12 well">
+						<div class="row-fluid">
+							<div class="span6">
+								<a class="span12 btn btn-large btn-info" href="./discover/">
+									Découvrir
+								</a>
+							</div>
+							<div class="span6">
+								Gallerie
+							</div>
+						</div>
+					</div>
+				</div>
+			
+				<div>
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="span6 well">
+							<h2 class="noMarginTop">A proximité</h2>
+							<p>Content hello</p>
+							<a class="btn btn-primary" href="#">
+							  Voir la liste
+							</a>
+						</div>
+						<div class="span6 well">
+							<h2 class="noMarginTop">Recommendations</h2>
+							<p>Content hello</p>
+							<a class="btn btn-primary" href="#">
+								+ de suggestion
+							</a>
+						</div>
+					</div>
+				</div>
+				</div>
+		</div>
+		<div class="span4 well noBG">
+			<div>
+			  <h2>
+				Actualités
+			  </h2>
+				<ul class="media-list">
+					{% for action in user_stream %}
+					{% bootstrap_action action %}
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+		<div class="span4 well noBG">
+						<h3>Dernières recherches</h3>
+						Recherche 1<br>
+						Recherche 2<br>
+			</div>
+		
+		</div>
 {% endblock %}

@@ -8,12 +8,17 @@ from haystack.query import SearchQuerySet
 
 from elements.models import Photo
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 def home (request):
     if request.user.is_authenticated():
         u_stream = user_stream(request.user)
         return render(request, 'user_home.html', {'home': True, 'user_stream': u_stream})
     else:
         return render(request, 'home.html', {'home': True})
+
+def discover (request):
+    return render(request, 'discover.html')
 
 @csrf_exempt
 def search (request):
