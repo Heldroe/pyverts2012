@@ -8,6 +8,8 @@ from haystack.query import SearchQuerySet
 
 from elements.models import Photo
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 def home (request):
     if request.user.is_authenticated():
         u_stream = user_stream(request.user)
