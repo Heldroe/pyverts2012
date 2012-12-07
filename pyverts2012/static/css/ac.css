@@ -133,8 +133,15 @@ h1,h2,h3,h4,h5 {
 	background-image: linear-gradient(to bottom, rgba(96,39,17,1), rgba(96,39,17,1));
 }
 .dropdown-menu li > a:hover, .dropdown-menu li > a:focus, .dropdown-submenu:hover > a {
-	background-color:#602711;
+	background-color:#804B37;
+	background-image:none;
 }
 .thumbnail { 
 	background-color:white ;
+}
+a {
+	color:#A87243;
+}
+.profile_main.hidden-phone {
+	color:#602711;
 }
