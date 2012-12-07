@@ -19,6 +19,8 @@ from django.utils.translation import ugettext as _
 from haystack.query import SearchQuerySet
 from django.views.decorators.csrf import csrf_exempt
 
+from cgi import escape
+
 import json
 
 @login_required
@@ -41,10 +43,10 @@ def usersearch (request, query=""):
     if request.method == 'GET':
         query = request.GET['q']
     print query
-    results = SearchQuerySet().using('default').autocomplete(text=query)
-    names = []
+    results = SearchQuerySet().autocomplete(profile=query)
+    names = ['<i class="icon-search"></i> <b>'+_('Rechercher : ')+'</b>'+escape(query)]
     for nr in results:
-        names.append(nr.object.user.username)
+        names.append(escape(nr.object.user.username))
     return HttpResponse(json.dumps({'usernames': names}))
 
 @login_required

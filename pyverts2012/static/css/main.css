@@ -1,3 +1,48 @@
+/* Photo swipe */
+.gallery { list-style: none; padding: 0; margin: 0; }
+.gallery:after { clear: both; content: "."; display: block; height: 0; visibility: hidden; }
+.gallery li { float: left; width: 15%; }
+.gallery li a { display: block; margin: 5px; border: 1px solid #3c3c3c; }
+.gallery li img { display: block; width: 100%; height: auto; }
+
+body {
+        /*padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        height: 100%;
+      }
+
+html {
+    height: 100%;
+}
+
+.easy-map-googlemap {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.element_edit {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.cover_box {
+    position: relative;
+    margin-top: -20px;
+}
+
+.cover_title {
+    color: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.cover_title h1 {
+    margin-left: 10px;
+}
+
 .roundborder {
     border: 1px solid #DDDDDD;
     border-radius: 4px 4px 4px 4px;
@@ -27,6 +72,35 @@
     margin: 10px;
 }
 
+.container, .content {
+    height: 100%;
+}
+
+.container, .content {
+    position: relative;
+}
+
+.proper-content {
+    padding-top: 60px; /* >= navbar height */
+}
+
+
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -50px; /* same as the footer */
+}
+
+.push {
+    height: 50px; /* same as the footer */
+}
+.footer-wrapper {
+    border-top: 1px solid #ccc;
+    position: relative;
+    height: 50px;
+}
+
 /* Large desktop */
 @media (min-width: 1200px) {
     .profile_main {
@@ -44,10 +118,16 @@
     .profile_main {
         height: 100px;
     }
+    .gallery li { width: 15%; }
+
+    .cover_title h1 { font-size: 30px; margin: 5px 0 2px 10px; }
 }
 
 /* Portrait tablets */
 @media (min-width: 768px) and (max-width: 979px) {
+
+    .element_action { display: none; }
+
     .profile_main {
         height: 65px;
     }
@@ -55,23 +135,37 @@
     .profile_main h1 {
         font-size: 30px;
     }
+    .gallery li { width: 20%; }
+
+    .cover_title h1 { font-size: 24px; margin: 2px 0 2px 10px; }
 }
  
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) {
+    .element_action { display: none; }
     .profile_main {
         background: none;
         border: none;
         box-shadow: none;
     }
 
+    #footer {
+          margin-left: -20px;
+          margin-right: -20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+
     .profile_main .thumbnail {
         margin: 0;
         width: 100px;
     }
+
+    .gallery li { width: 25%; }
 }
  
 /* Landscape phones and down */
 @media (max-width: 480px) {
-
+    .element_action { display: none; }
+    .gallery li { width: 33.33333333%; }
 }

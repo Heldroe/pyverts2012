@@ -1,0 +1,13 @@
+{% extends "content.html" %}
+{% load bootstrap_toolkit %}
+{% load i18n %}
+{% block content %}
+<h2>{% trans "Ajouter une photo" %}</h2>
+<form action="{% url element_add_photo element.id %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form|as_bootstrap }}
+    <div class="actions">
+        <button type="submit" class="btn primary">{% trans "Ajouter" %}</button>
+    </div>
+</form>
+{% endblock %}

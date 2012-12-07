@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>pyverts2012</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+
+  </head>
+  <body>
+  	
+
+<div class="">
+	
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/vader/jquery-ui.css" type="text/css" />
+    <link rel="stylesheet" href="css/jquery.Jcrop.css" type="text/css" />
+    <link rel="stylesheet" href="css/demos.css" type="text/css" />
+	<script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="js/jquery.Jcrop.js" type="text/javascript"></script>
+	<script src="js/jQueryRotateCompressed.js" type="text/javascript">
+	</script>
+    <script src="js/UploadFichier.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="css/positionner_QR_code.css" type="text/css"/>
+
+    <script type="text/javascript">
+		var angle = 0;
+		var width_pool_font_2 = 0;
+		var height_pool_font_2 = 0;
+		var qrx=0;
+		var qry=0;
+		var qrw=0;
+		var qrh=0;
+		var url_image="";
+		
+        var jcrop_api;
+    jQuery(function($){
+
+      // How easy is this??
+      $('#jc-hidden-image').Jcrop();
+      $('button.ui-button').button();
+
+      // Attach hidden dialog button click event
+      $('#jc-hidden-btn').click(function(){
+        $('#jc-hidden-dialog').dialog({
+          modal: true,
+          width: (parseInt($('#jc-hidden-image').width())+34)+'px',
+          title: 'Jcrop in jQuery-ui Dialog (Hidden)',
+          resizable: false
+        });
+        return false;
+      });
+
+      $('#jc-dyn-btn').click(function(){
+        var jcrop_api;
+        var $dialog = $('<div><div class="jc-dialog"><img src="demo_files/sago.jpg" /></div></div>');
+        $dialog.find('img').Jcrop({},function(){
+          jcrop_api = this;
+          $dialog.dialog({
+            modal: true,
+            title: 'Jcrop in jQuery-ui Dialog (Dynamic)',
+            //close: function(){ $dialog.remove(); },
+            width: jcrop_api.getBounds()[0]+34,
+            resizable: false
+          })
+        });
+        $dialog.append('<p><b>This dialog was dynamically created in Javascript.</b><br />'+
+          'Jcrop was attached to the image, and the dialog opened when Jcrop finished.</p>');
+        return false;
+      });//
+//*/
+      /*$('#tabs-2 img').Jcrop({
+        setSelect: [10,10,200,200]
+      });//*/
+      $('#tabs').tabs();
+	  
+			 $('#pool_font').Jcrop({
+			onChange: update_selection,
+			onSelect: update_selection,
+			setSelect: [50,50,150,150],
+			aspectRatio: 1
+          },function(){
+            jcrop_api = this;
+          });
+		$('#pool_font2').css({
+				marginLeft:0 + 'px'//  document.getElementById('pool_font').y +'px'
+          });//*/
+		  width_pool_font_2=document.getElementById('pool_font2').width;
+		  height_pool_font_2=document.getElementById('pool_font2').height;
+		  $('#qr_code').css({
+            width: 100 + 'px',
+            height: 100  + 'px',
+            //marginLeft: - width_pool_font_2 + 'px',
+            marginLeft: 50- width_pool_font_2 + 'px',
+            //marginLeft: 0 + 'px',
+            marginTop: 50+ 'px'//document.getElementById('pool_font').y  + 'px'
+          });
+		  qrx=50;
+		  qry=50;
+		  qrw=100;
+		  qrh=100;
+			$('#angle_rotate_div').css({
+            width: 100 + 'px',
+            height: 100  + 'px' ,
+            marginLeft: width_pool_font_2 + 'px',
+            marginTop: document.getElementById('pool_font').y  + 'px'
+          });
+      function update_selection(c)
+      {
+	//	$('#qr_code').width
+	//*
+	//alert($('pool_font2').width);
+		$('#qr_code').css({
+            width: c.w + 'px',
+            height: c.h  + 'px' ,
+            marginLeft:  c.x - width_pool_font_2   + 'px',//+ $('pool_font').x+
+            //marginTop:   c.y + 'px'
+          //  marginLeft:  c.x   + 'px',//+ $('pool_font').x+
+            marginTop:   c.y + 'px'
+          });
+		  qrx=Math.round(c.x);
+		  qry=Math.round(c.y);
+		  qrh=Math.round(c.h);
+		  qrw=Math.round(c.w);
+		//*///$('pool_font2').x
+	  }
+	  
+		});
+		function rotateImage(){
+			angle=parseInt($('#angleRotation').val());
+			$("#qr_code").rotate(angle);
+		}
+		function setLink(){
+		if(url_image=="")
+			url_image=encodeURI("http://users.polytech.unice.fr/~favreau/pool.jpg");
+		//url_site=encodeURI("http://users.polytech.unice.fr/~favreau");
+		url_site=encodeURI(document.getElementById('url_a_encoder').value);
+			lien="http://x2d.me/alpha/gencode?key=EbuvOCUvEEGSXprNuscH6%3eYOZ0ymG0QtamB1J1nutcp3Oi6stjSculC38MpVRs2q&u_uri=";
+			lien+=url_site;
+			lien+="&u_docw=";
+			lien+=document.getElementById('pool_font').width+"&u_doch="+document.getElementById('pool_font').height;
+			lien+="&u_code=0&u_sx="+qrw+"&u_sy="+qrh;
+			lien+="&u_rotate="+angle;
+			//lien+="&u_tagtx="+document.getElementById('pool_font').width/2+"&u_tagty="+document.getElementById('qr_code').height/2;
+			lien+="&u_tagtx="+qrx;//document.getElementById('qr_code').x-document.getElementById('pool_font2').x;
+			lien+="&u_tagty="+qry;//document.getElementById('qr_code').y-document.getElementById('pool_font2').y;
+			lien+="&u_obj="+url_image+"&u_objscale=1.0&u_objw=";
+			lien+=document.getElementById('pool_font').width+"&u_objh="+document.getElementById('pool_font').height;
+			lien+="&u_objtx=-"+qrx+"&u_objty=-"+qry;
+			//alert(lien);
+			return lien;
+		}
+		function generateQRCode(){
+			lien=setLink();
+		}
+		function load_qr_code(){
+			document.getElementById('img_QR+').src=setLink();
+		};
+		function ddlimage(){
+			if(document.getElementById('URL_IMAGE').value!=""){
+				var aa=document.getElementById('URL_IMAGE').value;
+				document.getElementById('pool_font2').src=aa;
+				document.getElementById('pool_font').src=aa;
+				
+		url_image=encodeURI(aa);
+		  width_pool_font_2=document.getElementById('pool_font2').width;
+		  height_pool_font_2=document.getElementById('pool_font2').height;
+		  $('#qr_code').css({
+            width: 10 + 'px',
+            height: 10  + 'px',
+            marginLeft: 10 + 'px',
+            marginTop: 10+ 'px'
+          });
+		  qrx=10;
+		  qry=10;
+		  qrw=10;
+		  qrh=10;
+		  $('#angle_rotate_div').css({
+            width: 100 + 'px',
+            height: 100  + 'px' ,
+            marginLeft: width_pool_font_2 + 'px',
+            marginTop: document.getElementById('pool_font').y  + 'px'
+          });
+				jcrop_api.setImage(aa);
+				$('#pool_font').Jcrop({
+					onChange: update_selection,
+					onSelect: update_selection,
+					setSelect: [50,50,150,150],
+					aspectRatio: 1
+				},function(){
+					jcrop_api = this;
+				});
+			}
+		}
+		function load_img_file(){
+		}
+    </script>
+    <div id="outer">
+    <div class="jcExample">
+    <div class="article">
+
+      <h1>Créez vos propre QR+ !!!</h1>
+
+
+      <!-- Hidden dialog -->
+      <div style="display:none;" id="jc-hidden-dialog">
+      <div class="jc-dialog">
+        <img src="img.jpg" id="jc-hidden-image" />
+      </div>
+        <h3>Créez votre QR code personnalisé en seulement 3 étapes !</h3>
+      </div>
+      <!-- /Hidden dialog -->
+
+      <ul>
+            <li><strong>1<sup>ère</sup> étape :</strong> Sélectionnez une image</li>
+            <li><strong>2<sup>ème</sup> étape :</strong> Personnalisez le QR code</li>
+            <li><strong>3<sup>ème</sup> étape :</strong> Télécharger votre QR code</li>
+      </ul>
+      <div id="tabs">
+        <ul>
+          <li><a href="#tabs-1">Sélection d'une image</a></li>
+          <li><a href="#tabs-2" onclick="load_img_file();">Personnalisation du QR+</a></li>
+          <li><a href="#tabs-3" onclick="load_qr_code();">Télécharger votre QR+</a></li>
+        </ul>
+        <div id="tabs-1">
+	 <!-- Sélectionnez un fichier sur votre ordinateur<br/>-->
+	  <input type=hidden name="ID" value=""/>
+	  <input type=hidden name="PLATFORM" value=""/>
+	<!--  <input size="50" Length="100" type="text" name="FILENAME" id="filenmaepc" onChange="verif_extension(this.value)" value=""/>
+	  <p><center>OU</center></p>-->
+	  charger l'image du web (collez l'URL)<br/>
+	  <input size=90 id="URL_IMAGE" maxLength=100 type="TEXT" name="URL" onChange="verif_extension(this.value)" value=""/>
+	  <input onClick="ddlimage()" type="submit" value="Charger l'image"/><br/>
+	<!--  <input type="button" value="Transférer" onClick="ddlimage();"/>-->
+        </div>
+        <div id="tabs-2">
+		URL à encoder: <input type="text" size="20" id="url_a_encoder" name="url_a_encoder" value="http://mobilead.fr/Wp3_prd/"/>
+          <table>
+			<tr>
+				<td>
+				<div>
+					<img src="image/pool.jpg" id="pool_font"/>
+				</div>
+				</td>
+				</tr>
+				<tr>
+				<td>
+					<div>
+						<img src="image/pool.jpg" id="pool_font2"/>
+						<img src="image/QR+_model_preview.png" id="qr_code"/>
+					</div>
+					<br />
+					<div id="angle_rorate">
+						<label>Angle<input type="text" size="3" id="angleRotation" name="angleRotation" value="0"/></label>
+						<br />
+						<button id="generateQRcode" onclick="rotateImage();">
+						Faire pivoter l'image
+						</button>
+					</div>
+				</td>
+			</tr>
+			</table>
+				<button id="rotateImage" onclick="generateQRCode();">
+				Générer le QRcode
+				</button>
+        </div>
+        <div id="tabs-3">
+			<img src="" id="img_QR+"/>
+		</div>
+      </div>
+    </div>
+  </body>
+</html>   

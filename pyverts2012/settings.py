@@ -136,12 +136,12 @@ INSTALLED_APPS = (
     'profiles',
     'elements',
     'team360',
-    'imagekit',
     'sorl.thumbnail',
     'jsonfield',
     'actstream',
     'haystack',
     'compressor',
+    'easy_maps',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
@@ -198,6 +198,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
     "allauth.account.context_processors.account",
     "allauth.socialaccount.context_processors.socialaccount",
+    "pyverts2012.context_processors.theme"
 )
 
 CACHES = {
@@ -218,7 +219,7 @@ CACHE_MIDDLEWARE_ALIAS = 'default'
 CACHE_MIDDLEWARE_SECONDS = 6000
 CACHE_MIDDLEWARE_KEY_PREFIX = ""
 
-COMPRESS_ENABLED = True
+COMPRESS_ENABLED = False
 COMPRESS_OFFLINE = True
 
 AUTH_PROFILE_MODULE = 'profiles.UserProfile'
@@ -226,6 +227,12 @@ AUTH_PROFILE_MODULE = 'profiles.UserProfile'
 LOGIN_REDIRECT_URL = '/profile/'
 
 THUMBNAIL_DEBUG = True
+
+ACTSTREAM_SETTINGS = {
+    'MODELS': ('auth.user', 'elements.element'),
+}
+
+#ACTSTREAM_SETTINGS['MODELS'] = ('auth.user', 'elements.element')
 
 LOCALE_PATHS = (
     os.path.join(PROJECT_ROOT, 'locale'),
@@ -242,8 +249,6 @@ HAYSTACK_CONNECTIONS = {
         'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
         'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_profiles'),
     },
-    #'elements': {
-    #    'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-    #    'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_elements'),
-    #},
 }
+
+SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"

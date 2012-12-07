@@ -1,0 +1,8 @@
+{% load thumbnail %}
+{% load staticfiles %}
+{% load i18n %}
+{% thumbnail photo.picture size_b as big %}
+    {% thumbnail photo.picture size_t_x crop="center" as small %}
+        <li><a href="{{ big.url }}" title="{{ photo }}"><img src="{{ small.url }}" alt="{{ photo }}"></a></li>
+    {% endthumbnail %}
+{% endthumbnail %}

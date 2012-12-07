@@ -1,0 +1,5 @@
+{% load thumbnail %}
+{% load staticfiles %}
+{% thumbnail photo.picture size_x crop="center" as im %}
+    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" alt="{{ photo }}">
+{% endthumbnail %}

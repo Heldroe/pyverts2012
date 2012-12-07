@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from elements.models import Element
+from elements.models import Element, Photo
 
 class ElementCreateForm(ModelForm):
     class Meta:
@@ -9,4 +9,9 @@ class ElementCreateForm(ModelForm):
 class ElementEditForm(ModelForm):
     class Meta:
         model = Element
-        fields = ('description','original_avatar')
+        fields = ('description',)
+
+class PhotoAddForm(ModelForm):
+	class Meta:
+		model = Photo
+		fields = ('picture', 'title', 'description')

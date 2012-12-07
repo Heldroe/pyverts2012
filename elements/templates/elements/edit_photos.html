@@ -1,0 +1,31 @@
+{% extends "content.html" %}
+{% load bootstrap_toolkit %}
+{% load i18n %}
+{% load photo_tags %}
+{% block content %}
+<h2>{% trans "Édition des photos" %}</h2>
+<a href="{% url element_add_photo element.id %}">{% trans "Ajouter une photo" %}</a>
+<ul class="media-list">
+{% for photo in photos %}
+	<li class="media">
+	<a class="pull-left" href="#">
+	{% photo photo 50 %}
+	</a>
+	<div class="media-body">
+	<h4 class="media-heading">{{ photo }}</h4>
+	{% if photo.main %}
+		<a class="btn btn-success btn-mini disabled" href="#">{% trans "Principale" %}</a>
+	{% else %}
+		<a class="btn btn-mini" href="{% url element_main_photo element.id photo.id %}">{% trans "Principale" %}</a>
+	{% endif %}
+	{% if photo.cover %}
+		<a class="btn btn-success btn-mini disabled" href="#">{% trans "Couverture" %}</a>
+	{% else %}
+		<a class="btn btn-mini" href="{% url element_cover_photo element.id photo.id %}">{% trans "Couverture" %}</a>
+	{% endif %}
+	<a class="btn btn-mini btn-error" href="{% url element_delete_photo element.id photo.id %}">{% trans "Supprimer" %}</a>
+	</div>
+	</li>
+{% endfor %}
+</ul>
+{% endblock %}

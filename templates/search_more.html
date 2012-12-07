@@ -1,0 +1,40 @@
+{% extends theme %}
+{% load i18n %}
+{% load user_avatar %}
+{% load photo_tags %}
+{% block content %}
+<h1>{% trans "Résultats" %}</h1>
+{% if element_results %}
+<ul class="media-list">
+{% for element_r in element_results %}
+	<li class="media">
+		{% if element_r.main_pic %}
+		<a class="pull-left" href="{% url view_element element_r.id %}">
+			{% photo element_r.main_pic 50 %}
+		</a>
+		{% endif %}
+		<div class="media-body">
+			<h4 class="media-heading" style="padding-top:3px"><a href="{% url view_element element_r.id %}">{{ element_r.name }}</a></h4>
+		</div>
+		{{ element_r.description }}
+	</li>
+{% endfor %}
+</ul>
+{% if previous %}
+	{% if request.REQUEST.q %}
+	<form action="{% url search_more previous_n %}" method="get">
+	<input type="hidden" name="q" value="{{ request.REQUEST.q }}">
+	<button type="submit" class="btn btn-info">{% trans "Résultats précédents" %}</button>
+	</form>
+	{% endif %}
+	{% endif %}
+	{% if next %}
+	{% if request.REQUEST.q %}
+	<form action="{% url search_more next_n %}" method="get">
+	<input type="hidden" name="q" value="{{ request.REQUEST.q }}">
+	<button type="submit" class="btn btn-info">{% trans "Résultats suivants" %}</button>
+	</form>
+	{% endif %}
+	{% endif %}
+{% endif %}
+{% endblock %}

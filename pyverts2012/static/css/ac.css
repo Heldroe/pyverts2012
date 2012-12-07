@@ -1,0 +1,108 @@
+/* PYVERT */
+.header-fun {
+	
+	/*background-position-y: -450px;
+	background-size: cover;*/
+	height:200px;
+	border:1px solid #E8CF7B ;
+	/*background-color:#F0C767;*/
+	background-color:black;
+	overflow: hidden;
+	border: none;
+	position:relative;
+	
+}
+
+.header-img {
+	width:1280px;
+	height:200px;
+	margin:auto;
+	position:relative;
+	background-image:url(../img/cavern.png);
+	background-repeat:no-repeat;
+}
+
+.navbar-inverse .navbar-inner {
+	background-color: #40190B;
+	background-image: url(../img/wood/2_dark_horiz_chalet.png);
+}
+
+.brand:hover {
+	color:#F2DFBB !important;
+}
+.brand {
+	color: #C9AB95 !important ;
+}
+.navbar-inverse .navbar-search .search-query {
+	background-color: #C9B795 ;
+	color:black ;
+}
+.navbar-inverse .navbar-search .search-query:-moz-placeholder {
+	color: #968971;
+}
+
+.navbar-inverse .navbar-search .search-query:-ms-input-placeholder {
+	color: #968971;
+}
+
+.navbar-inverse .navbar-search .search-query::-webkit-input-placeholder {
+	color: #968971;
+}
+
+.navbar-inverse .nav .active > a, .navbar-inverse .nav .active > a:hover {
+	background-color: #732A0B; 
+	/*background-color: #633506;*/
+}
+.navbar-inverse .brand, .navbar-inverse .nav > li > a {
+	color:white ;
+}
+
+.navbar-inverse .nav li.dropdown.open > .dropdown-toggle, .navbar-inverse .nav li.dropdown.active > .dropdown-toggle, .navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle {
+	background-color: #732A0B;
+}
+.btn-primary:hover, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
+	background-color:#9E694C;
+}
+
+.btn-primary {
+	background-color:#732A0B;
+	background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(0,0,0,0.1)), to(rgba(0,0,0,1)));
+	background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6));
+	/* rgba(0,0,0,0.2) rgba(120,120,120,1) */
+	background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6));
+	background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.6));
+}
+
+body{
+	background-color:black;
+	width:100%;
+	padding:0!important;
+}
+.canadian_wrapper{
+	background-color:#4F2509;
+	background-image: -moz-linear-gradient(top, rgba(0,0,0,1), rgba(0,0,0,0));
+	background-image: -webkit-gradient(linear, 0 10%, 0 100%, from(rgba(0,0,0,1)), to(rgba(0,0,0,0))));
+	background-image: -webkit-linear-gradient(top, rgba(0,0,0,1), rgba(0,0,0,0));
+	/* rgba(0,0,0,0.2) rgba(120,120,120,1) */
+	background-image: -o-linear-gradient(top, rgba(0,0,0,1), rgba(0,0,0,0));
+	background-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+}
+/*.btn-primary {
+	background-color:brown;
+	background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
+	background-image: -webkit-linear-gradient(top, rgba(0, 255, 0, 0.1), rgba(0, 0, 255, 1));
+	background-image: -o-linear-gradient(top, rgba(0,80,120,0.1), #04C);
+	background-image: linear-gradient(to bottom, #0088cc, #0044cc);
+}*/
+
+.canadianBottom {
+	height:125px;
+	background-color:#4F2509;
+	background-image: -moz-linear-gradient(top, rgba(0,0,0,1), rgba(0,0,0,0));
+	background-image: -webkit-gradient(linear, 0 10%, 0 100%, from(rgba(0,0,0,0)), to(rgba(0,0,0,1))));
+	background-image: -webkit-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,1));
+	background-image: -o-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,1));
+	background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1));
+}
