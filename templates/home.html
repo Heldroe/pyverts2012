@@ -2,9 +2,15 @@
 {% load account %}
 {% block content %}
 <div class="hero-unit">
-    <h1>Hello, world!</h1>
-    <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-    <p><a class="btn btn-primary btn-large">Learn more »</a></p>
+    <h1>Bienvenue sur PatriWatch !</h1>
+    <p><i>PatriWatch</i> est un site qui vous permet de (re)découvrir le patrimoine historique, culturel et gastronomique de votre pays.<br />
+	Inscrivez-vous et trouvez, selon vos envies, une visite à faire ou encore une recette à préparer.</p>
+    <p>C'est rapide et gratuit.</p>
+	<p>
+		<a class="btn btn-primary btn-large btn-info" href="./accounts/signup/">S'inscrire »</a>
+		<a class="btn btn-primary btn-large btn-success" href="./accounts/login/">Se connecter »</a>
+</p>
 </div>
 {% user_display user %}
 {% endblock %}
+

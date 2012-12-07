@@ -140,7 +140,19 @@ h1,h2,h3,h4,h5 {
 a {
 	color:#A87243;
 }
+
+a:hover {
+	color:#A8AA88;
+}
 .profile_main.hidden-phone {
 	color:#602711;
 }
+
+.hero-unit {
+	color:black;
+}
+.hero-unit h1 {
+	text-shadow:2px 2px 6px gray;
+}
+
 
