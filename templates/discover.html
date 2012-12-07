@@ -1,5 +1,101 @@
 {% extends theme %}
 {% load account %}
 {% block content %}
-<h1>discover</h1>
+<h1>Découvrir</h1>
+<div id="mainQuestion" class="discover-menu row-fluid">
+	<div class="row-fluid">
+		<div class="span12 well">
+			<div class="row-fluid">
+				<div class="span6">
+					<a class="span12 btn btn-large" href="#" opt="optSortir">
+						Sortir
+					</a>
+				</div>
+				<div class="span6">
+					<a class="span12 btn btn-large" href="#" opt="optRester">
+						Rester chez soi
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="optSortir" class="discover-submenu row-fluid">
+	<div class="row-fluid">
+		<div class="span12 well">
+			<div class="row-fluid">
+				<div class="span6">
+					<a class="span12 btn btn-large" href="#" opt="optVisiter">
+						Visiter
+					</a>
+				</div>
+				<div class="span6">
+					<a class="span12 btn btn-large" href="#" opt="optManger">
+						Manger
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="optRester" class="discover-submenu row-fluid">
+	<div class="row-fluid">
+		<div class="span12 well">
+			<div class="row-fluid">
+				<div class="span6">
+					<a class="span12 btn btn-large" href="#">
+						Musique
+					</a>
+				</div>
+				<div class="span6">
+					<a class="span12 btn btn-large" href="#">
+						Recettes
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="optVisiter" class="discover-submenu row-fluid">
+	<div class="row-fluid">
+		<div class="span12 well">
+			<div class="row-fluid">
+				<div class="span6">
+					<a class="span12 btn btn-large" href="#">
+						Monuments
+					</a>
+				</div>
+				<div class="span6">
+					<a class="span12 btn btn-large" href="#">
+						Musée
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+function init(){
+		$(document).ready(function(){
+			console.log("ready");
+			console.log($("[target]"));
+			$(".discover-submenu").hide();
+			$(".discover-menu [opt]").click(function(){
+				$(".discover-menu [opt]").removeClass("btn-info");
+				console.log($(this));
+				$(this).addClass("btn-info");
+			});
+			$("[opt]").click(function(){
+				var opt = $(this).attr("opt");
+				console.log("Target : ", $(this).attr("opt"));
+				change(opt);
+		}) });
+	}
+
+function change(option){
+	$(".discover-submenu").hide("fast");
+	$("#"+option).show("fast");
+}
+window.onload = init ;
+</script>
 {% endblock %}
