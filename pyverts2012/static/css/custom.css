@@ -1,0 +1,21 @@
+.noBG {
+	background-image:none;
+	background-color:transparent;
+}
+.noMarginTop{
+	margin-top:0;
+	margin-bottom:0;
+}
+
+#spotlight img {
+	margin-right:5px;
+}
+.translucentBG {
+	background-color:rgba(255,255,255,0.6);
+	color:black;
+}
+.translucentBGdark{
+	background-color:rgba(0,0,0,0.3);
+	color:white;
+	text-shadow: 2px 2px 4px black;
+}
