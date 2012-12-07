@@ -17,6 +17,9 @@ def home (request):
     else:
         return render(request, 'home.html', {'home': True})
 
+def discover (request):
+    return render(request, 'discover.html')
+
 @csrf_exempt
 def search (request):
     tab_e_results = []
