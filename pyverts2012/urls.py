@@ -9,6 +9,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^$', 'pyverts2012.views.home', name='home'),
     url(r'^search/$', 'pyverts2012.views.search', name='search'),
+    url(r'^search/more/(?P<page_id>\d+)/$', 'pyverts2012.views.search_more', name='search_more'),
     url(r'^discover/$', 'pyverts2012.views.discover', name='discover'),
     url(r'^theme/(?P<new_theme>.*)/$', 'pyverts2012.views.theme', name='theme'),
     url(r'^profile/', include('profiles.urls')),
