@@ -40,7 +40,7 @@ class Rating(models.Model):
 def allocate_ratings(sender, instance, created, **kwargs):
     if created:
     	# we take 10 people from members and make the newly created user able to rate them
-    	for user in User.objects.order_by('?')[:10]:
+    	for user in User.objects.exclude(id=instance.id).order_by('?')[:10]:
     		WeekRater.objects.create(rated=user, rater=instance, date=datetime.now())
 
 post_save.connect(allocate_ratings, sender=User)
