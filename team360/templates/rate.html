@@ -4,7 +4,7 @@
 {% block content %}
 <h3>Evaluez l'utilisateur {{ rated_user }} durant cette semaine :</h3>
 <ul>
-<form action="{% url team360_rate user.id criterion_id %}" method="post">
+<form action="{% url team360_rate user_id criterion_id %}" method="post">
     {% csrf_token %}
     {{ form|as_bootstrap }}
     <div class="actions">

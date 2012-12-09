@@ -1,5 +1,7 @@
 from django.db import models
+from django.db.models.signals import post_save
 from django.contrib.auth.models import User
+from datetime import datetime
 
 class Criterion(models.Model):
     name = models.CharField(max_length=30)
@@ -34,3 +36,11 @@ class Rating(models.Model):
 	date = models.DateTimeField()
 	def __unicode__(self):
 		return unicode(self.rater)
+		
+def allocate_ratings(sender, instance, created, **kwargs):
+    if created:
+    	# we take 10 people from members and make the newly created user able to rate them
+    	for user in User.objects.order_by('?')[:10]:
+    		WeekRater.objects.create(rated=user, rater=instance, date=datetime.now())
+
+post_save.connect(allocate_ratings, sender=User)
